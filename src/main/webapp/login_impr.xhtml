@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Fundraising - Login</title>
+        <link href="login.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+ <body>
+<div id="wrapper">
+
+	<h:form  styleClass="login-form">
+	
+		<div class="header">
+		<h1>Login Form</h1>
+		<span>Fill out the form below to login to HRSYS.</span>
+		</div>
+	
+		<div class="content">
+		Username: <h:inputText styleClass="input" value="#{loginBean.username}"/>
+		<div class="user-icon"></div>
+                Password: <h:inputSecret styleClass="input" value="#{loginBean.password}"/>
+		<div class="pass-icon"></div>		
+		</div>
+
+		<div class="footer">
+		
+		
+                <br/>
+                <br/>
+
+            <h:panelGrid columns="3">
+                <h:panelGroup></h:panelGroup>
+                <h:panelGroup><h:commandButton styleClass="button" value="Submit" action="#{loginBean.login()}"/></h:panelGroup>
+                <h:panelGroup><h:commandButton styleClass="register" value="Reset" action="#{loginBean.logout()}"/></h:panelGroup>
+            </h:panelGrid>
+		</div>
+	
+	</h:form>
+</div>
+	 </body>
+</html>
