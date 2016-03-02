@@ -12,42 +12,41 @@ import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
-import org.eclipse.persistence.jpa.JpaEntityManager;
 
 /**
  *
  * @author Clifton T. Mtengezo
  */
-public class SystemUserGroupListener {
+public class WorkstationListener {
          @PostLoad
-	public void postLoad(SystemUserGroup systemusergroup) {
+	public void postLoad(Workstation workstation) {
         System.out.println("In post load");
         }
 	@PrePersist
-	public void prePersist(SystemUserGroup systemusergroup) {
+	public void prePersist(Workstation workstation) {
         //mobappuser.setRole("mobappuser111");
         //lvType.setInsdate(new Date());
         //System.out.println("In pre persist ");
         }
 	@PostPersist
-	public void postPersist(SystemUserGroup systemusergroup) {
+	public void postPersist(Workstation workstation) {
         //System.out.println("In post persist" + cust.getFirstname());
         }
 	@PreUpdate
-	public void preUpdate(SystemUserGroup systemusergroup) {
+	public void preUpdate(Workstation workstation) {
             //mobappuser.setRole("mobappuser");
             //System.out.println("In pre update");
         }
 	@PostUpdate
-	public void postUpdate(SystemUserGroup systemusergroup) {
+	public void postUpdate(Workstation workstation) {
         //System.out.println("In post update");
         }
 	@PreRemove
-	public void preRemove(SystemUserGroup systemusergroup) {
+	public void preRemove(Workstation workstation) {
         //System.out.println("In pre remove");
         }
 	@PostRemove
-	public void postRemove(SystemUserGroup systemusergroup) {
+	public void postRemove(Workstation workstation) {
         //System.out.println("In post remove");
-        }    
+        }     
 }

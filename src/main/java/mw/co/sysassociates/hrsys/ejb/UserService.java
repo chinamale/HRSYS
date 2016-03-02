@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Local;
@@ -17,6 +18,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import mw.co.sysassociates.hrsys.entity.SystemUser;
 import mw.co.sysassociates.hrsys.entity.SystemUserGroup;
+import org.eclipse.persistence.internal.sessions.ObjectChangeSet;
+import org.eclipse.persistence.internal.sessions.UnitOfWorkChangeSet;
+import org.eclipse.persistence.jpa.JpaEntityManager;
+import org.eclipse.persistence.sessions.changesets.ChangeRecord;
 
 /**
  *
@@ -52,6 +57,22 @@ public class UserService implements IUserService{
 
             em.persist(sys_user);
             em.persist(sys_user_group);
+            
+            final JpaEntityManager jpaEntityManager = (JpaEntityManager) em.getDelegate();
+final UnitOfWorkChangeSet changeSet = (UnitOfWorkChangeSet) jpaEntityManager.getUnitOfWork().getCurrentChanges();
+final ObjectChangeSet objectChangeSet = (ObjectChangeSet) changeSet.getObjectChangeSetForClone(sys_user);
+ 
+// Get a list of changed propertys and do something with that.
+final List<ChangeRecord> changedProperties = objectChangeSet.getChanges();
+for(final ChangeRecord property : changedProperties) {
+    System.out.println("Changed property: '" + property);
+}
+ 
+// Check if a property called "coolProperty" has changed.
+final ChangeRecord coolPropertyChanges = objectChangeSet.getChangesForAttributeNamed("coolProperty");
+if(coolPropertyChanges != null) {
+    System.out.println("Property 'coolProperty' has changed from '" + coolPropertyChanges.getOldValue() + "' to '" + sys_user.getFirstname() + "'");
+}
             
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
