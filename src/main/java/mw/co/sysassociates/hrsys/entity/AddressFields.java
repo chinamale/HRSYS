@@ -44,15 +44,15 @@ public class AddressFields extends AuditFields {
     @Column(name = "EMAILADDRESS", nullable = true,length = 30)
     private String emailaddress;
     
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    @Override
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    @Override
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
     
     public String getLocation() {
         return location;

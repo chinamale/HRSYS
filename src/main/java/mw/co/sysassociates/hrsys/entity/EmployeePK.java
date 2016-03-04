@@ -32,7 +32,7 @@ public class EmployeePK implements Serializable {
     public void setCompany(String company) {
         this.company = company;
     }
-
+    
     public String getEmployeenumber() {
         return employeenumber;
     }

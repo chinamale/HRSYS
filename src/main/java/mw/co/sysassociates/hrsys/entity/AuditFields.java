@@ -21,12 +21,7 @@ import javax.persistence.TemporalType;
  */
 @MappedSuperclass
 public class AuditFields {
-private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    //private static final long serialVersionUID = 1L;
     @Temporal(TemporalType.DATE)
     @Column(name = "INSDATE")
     private Date insdate;
@@ -44,14 +39,6 @@ private static final long serialVersionUID = 1L;
     private String delby;
     @Column(name = "RECSTATUS",length = 3)
     private String recstatus;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Date getInsdate() {
         return insdate;

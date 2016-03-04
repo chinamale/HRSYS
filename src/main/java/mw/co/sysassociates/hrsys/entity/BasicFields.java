@@ -18,7 +18,7 @@ import javax.persistence.MappedSuperclass;
  * @author Clifton T. Mtengezo
  */
 @MappedSuperclass
-public class DivisionFields extends AuditFields {
+public class BasicFields extends AuditFields {
    private static final long serialVersionUID = 1L;
     
     @Id

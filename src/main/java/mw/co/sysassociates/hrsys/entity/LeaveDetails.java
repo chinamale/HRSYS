@@ -8,9 +8,13 @@ package mw.co.sysassociates.hrsys.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -30,7 +34,12 @@ import javax.persistence.TemporalType;
     })
     @EntityListeners({LeaveDetailsListener.class})
 public class LeaveDetails extends AuditFields implements Serializable {
-private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id; 
     public LeaveDetails() {
     }
     @ManyToOne

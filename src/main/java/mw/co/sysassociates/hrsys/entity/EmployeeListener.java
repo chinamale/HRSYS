@@ -17,11 +17,11 @@ public class EmployeeListener {
 	@PrePersist
 	public void prePersist(Employee cust) {
             cust.setAmmdate(new Date());
-        System.out.println("In pre persist" + cust.getFirstname());
+        System.out.println("In pre persist " + cust.getFirstname());
     }
 	@PostPersist
 	public void postPersist(Employee cust) {
-        System.out.println("In post persist" + cust.getFirstname());
+        System.out.println("In post persist " + cust.getFirstname());
     }
 	@PreUpdate
 	public void preUpdate(Employee cust) {

@@ -6,9 +6,13 @@
 package mw.co.sysassociates.hrsys.entity;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -26,24 +30,44 @@ import javax.persistence.NamedQuery;
     })
     @EntityListeners({PrevEmployerListener.class})
 public class PrevEmployer extends AuditFields implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;    
     @Column(name = "YEARFROM", nullable = true,length = 4)
     private String yearfrom;
+    
     @ManyToOne
     @JoinColumns({
     @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
     @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
     })
     private Employee employee;
+    
     @Column(name = "YEARTO", nullable = true,length = 4)
     private String yearto;
+    
     @Column(name = "ORGANISATION", nullable = true,length = 40)
     private String organisation;
+    
     @Column(name = "POST", nullable = true,length = 40)
     private String post;
+    
     @ManyToOne
     @JoinColumn(name = "ReasonForLeaving", nullable = true)
     private ReasonForLeaving reasonForLeaving;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
     public String getPost() {
         return post;
     }

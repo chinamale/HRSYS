@@ -13,5 +13,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface IUserService {
- void registerUser(String  username, String surname, String firstname, String role, String userpassword);
+void registerUser(String  username, String surname, String firstname, String role, String userpassword);
 }

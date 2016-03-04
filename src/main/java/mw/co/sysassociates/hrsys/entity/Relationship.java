@@ -33,6 +33,12 @@ import javax.persistence.TemporalType;
     @EntityListeners({RelationshipListener.class})
 public class Relationship extends AuditFields implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    
     @Column(name = "DESCRIPTION",length = 40)
     private String description;   
     
@@ -54,6 +60,7 @@ public class Relationship extends AuditFields implements Serializable {
         this.description = description;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -1,14 +1,18 @@
 package mw.co.sysassociates.hrsys.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -36,16 +40,24 @@ import javax.persistence.TemporalType;
     private List<Education> education;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="")
+    private List<LeaveDetails> leaveDetails;
+    
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="")
     private List<Dependant> dependant;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="")
-    private List<PrevEmployer> prevEmployer;
+    //@OneToMany(cascade=CascadeType.ALL,mappedBy="employee",fetch = FetchType.EAGER)
+//    @ElementCollection
+//    @CollectionTable(name="PrevEmployer",joinColumns ={
+//    @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
+//    @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")})
+    @OneToMany(mappedBy="employee",targetEntity=PrevEmployer.class,fetch=FetchType.EAGER)
+    private Collection prevEmployer;
 
-    public List<PrevEmployer> getPrevEmployer() {
+    public Collection getPrevEmployer() {
         return prevEmployer;
     }
 
-    public void setPrevEmployer(List<PrevEmployer> prevEmployer) {
+    public void setPrevEmployer(Collection prevEmployer) {
         this.prevEmployer = prevEmployer;
     }
        
@@ -186,6 +198,9 @@ import javax.persistence.TemporalType;
     private String employmentstatus;
     @Column(name = "ETIN", nullable = true,length = 20)
     private String etin;
+    @ManyToOne
+    @JoinColumn(name="establishedposition",nullable=true, insertable=false, updatable=false)
+    private EstablishedPosition establishedposition;
     @Column(name = "FIRSTNAME", nullable = true,length = 35)
     private String firstname;
     @Column(name = "GRADEWHENJOINING", nullable = true,length = 3)
@@ -224,7 +239,9 @@ import javax.persistence.TemporalType;
     private String medicalschemetype;
     @Column(name = "NATIONALITY", nullable = true,length = 20)
     private String nationality;
-    @Column(name = "NEXTOFKIN", nullable = true,length = 20)
+    @Column(name = "SALARYNOTCH", nullable = true,length = 20)
+    private String salarynoth;
+    @Column(name = "NEXTOFKIN", nullable = true,length = 5)
     private String nextofkin;
     @Column(name = "NUMBEROFDEPENDANTS")
     private byte numberofdependants;
@@ -294,7 +311,9 @@ import javax.persistence.TemporalType;
     public Employee() {
     }
 
+public Employee(String employeeNo, String company, String firstname, String surname, String sex, String title){
 
+}
 //    public Integer getId() {
 //        return id;
 //    }
@@ -1051,6 +1070,34 @@ import javax.persistence.TemporalType;
     public void setTakenleavegrant(String takenleavegrant) {
         this.takenleavegrant = takenleavegrant;
     }
+
+    public EstablishedPosition getEstablishedposition() {
+        return establishedposition;
+    }
+
+    public void setEstablishedposition(EstablishedPosition establishedposition) {
+        this.establishedposition = establishedposition;
+    }
+
+    public String getSalarynoth() {
+        return salarynoth;
+    }
+
+    public void setSalarynoth(String salarynoth) {
+        this.salarynoth = salarynoth;
+    }
+
+    public List<LeaveDetails> getLeaveDetails() {
+        return leaveDetails;
+    }
+
+    public void setLeaveDetails(List<LeaveDetails> leaveDetails) {
+        this.leaveDetails = leaveDetails;
+    }
+    
+    
+    
+    
 
     //    @Override
 	    public int hashCode() {

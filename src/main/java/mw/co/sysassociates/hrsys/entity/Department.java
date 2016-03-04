@@ -29,7 +29,7 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "Department.findByCompAndCode", query = "SELECT d FROM Department d WHERE d.company = :comp AND d.code = :code"),
     })
     @EntityListeners({DepartmentListener.class})
-public class Department extends DivisionFields implements Serializable {
+public class Department extends BasicFields implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
     @Basic(optional = false)

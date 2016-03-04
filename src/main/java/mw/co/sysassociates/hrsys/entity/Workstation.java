@@ -26,7 +26,7 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "Workstation.findByCompAndCode", query = "SELECT d FROM Workstation d WHERE d.company = :comp AND d.code = :code"),
     })
     @EntityListeners({WorkstationListener.class})
-public class Workstation extends DivisionFields implements Serializable {
+public class Workstation extends BasicFields implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
     @Basic(optional = false)
