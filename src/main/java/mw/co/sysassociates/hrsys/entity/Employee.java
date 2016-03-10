@@ -94,6 +94,7 @@ import javax.persistence.TemporalType;
     @ManyToOne
     @JoinColumn(name="company",nullable=false, insertable=false, updatable=false)
     private Company company;  // Added to support joined query
+    
     public Company getCompany() {
         return company;
     }

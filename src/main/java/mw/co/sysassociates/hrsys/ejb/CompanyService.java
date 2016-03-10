@@ -48,6 +48,7 @@ public class CompanyService implements ICompany {
             emplopk = new EmployeePK();
             emplopk.setCompany(comp.getCompanyId());
             emplopk.setEmployeenumber(employeeNo);
+            
             emp = new Employee();
             emp.setEmploPK(emplopk);         
             emp.setFirstname(firstname);
@@ -62,12 +63,13 @@ public class CompanyService implements ICompany {
             prevemp.setPost("Manager");
             //em.persist(prevemp);
             comp.getEmployees().add(emp);
-            //          Employee emp1 = em.find(Employee.class,emplopk);
-           
-            emp.getPrevEmployer().add(prevemp);
-            em.merge(emp);
+   //         em.refresh(emp);
+            //Employee emp1 = em.find(Employee.class,emplopk);
+    //        emp.getPrevEmployer().add(prevemp);
+            //em.merge(emp);
             //emp.getPrevEmployer().add(prevemp);
-            //em.persist(prevemp);
+            //comp.
+            em.persist(prevemp);
             
             return 0;
 
