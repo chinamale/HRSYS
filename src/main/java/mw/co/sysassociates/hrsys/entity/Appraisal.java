@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -39,22 +41,26 @@ public class Appraisal extends AuditFields implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id; 
-        @ManyToOne
-        @JoinColumns({
-        @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
-        @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
+    private Integer id;
+    @ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "COMPANY", referencedColumnName = "COMPANY"),
+        @JoinColumn(name = "EMPLOYEE", referencedColumnName = "EMPLOYEENUMBER")
     })
     private Employee employee;
-        @Temporal(TemporalType.DATE)
-        @Column(name = "APPRDATE")
-        private Date apprdate;
-        @Column(name = "APPRPERIOD")
-        private String apprPeriod;
-        @Column(name = "APPRQUARTER")
-        private String apprQuarter;
-        @Column(name = "SCORE")
-        private String score;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "APPR_DATE")
+    private Date apprdate;
+    @Column(name = "APPR_PERIOD")
+    private String apprPeriod;
+    @Column(name = "APPR_QUARTER")
+    private String apprQuarter;
+//    @Column(name = "APPR_SCORE")
+//    private String apprscore;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "APPR_SCORE", referencedColumnName = "CODE")
+    private AppraisalScore appraisalscore;
 
     public Appraisal() {
     }
@@ -99,12 +105,12 @@ public class Appraisal extends AuditFields implements Serializable {
         this.apprQuarter = apprQuarter;
     }
 
-    public String getScore() {
-        return score;
+    public AppraisalScore getAppraisalscore() {
+        return appraisalscore;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public void setAppraisalscore(AppraisalScore appraisalscore) {
+        this.appraisalscore = appraisalscore;
     }
 
     @Override
@@ -115,7 +121,6 @@ public class Appraisal extends AuditFields implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.apprdate);
         hash = 29 * hash + Objects.hashCode(this.apprPeriod);
         hash = 29 * hash + Objects.hashCode(this.apprQuarter);
-        hash = 29 * hash + Objects.hashCode(this.score);
         return hash;
     }
 
@@ -143,16 +148,12 @@ public class Appraisal extends AuditFields implements Serializable {
         if (!Objects.equals(this.apprQuarter, other.apprQuarter)) {
             return false;
         }
-        if (!Objects.equals(this.score, other.score)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "{" + "id=" + id + ", employee=" + employee + ", apprdate=" + apprdate + ", apprPeriod=" + apprPeriod + ", apprQuarter=" + apprQuarter + ", score=" + score + '}';
+        return "{" + "id=" + id + ", employee=" + employee + ", apprdate=" + apprdate + ", apprPeriod=" + apprPeriod + ", apprQuarter=" + apprQuarter + ", appraisalscore=" + appraisalscore + '}';
     }
-        
-        
+
 }

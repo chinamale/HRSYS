@@ -14,6 +14,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 /**
@@ -22,75 +24,46 @@ import javax.persistence.NamedQuery;
  */
     @Entity
         @NamedQueries({
-	@NamedQuery(name = "Certificate.findAll", query = "SELECT c FROM Certificate c"),
-        @NamedQuery(name = "Certificate.findByname", query = "SELECT c FROM Certificate c WHERE c.description = :description"),
+	@NamedQuery(name = "Certificate.findAll", query = "SELECT c FROM Certificate c where c.company = :company"),
+        @NamedQuery(name = "Certificate.findByname", query = "SELECT c FROM Certificate c WHERE c.name = :name"),
+        @NamedQuery(name = "Certificate.findByCode", query = "SELECT c FROM Certificate c WHERE c.code = :code and c.company = :company"),
     })
     @EntityListeners({CertificateListener.class})
-public class Certificate extends AuditFields implements Serializable {
+public class Certificate extends  BasicFields implements Serializable {
   private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id; 
-  
-    @Column(name = "DESCRIPTION",length = 40)
-    private String description;
+
     @Column(name = "TYPE",length = 2)
     private String type;
-    
-//    @Id
-//    @Basic(optional = false)
-//    @Column(name = "ID", nullable = false)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Integer id;
-//
-//    @Column(name = "TYPE",length = 2)
-//    private String type;
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "INSDATE")
-//    private Date insdate;
-//    @Column(name = "INSBY",length = 20)
-//    private String insby;
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "AMMDATE")
-//    private Date ammdate;
-//    @Column(name = "AMMBY",length = 20)
-//    private String ammby;
-    
- //   @OneToMany(cascade={CascadeType.ALL},targetEntity=Education.class,mappedBy="certificate",fetch=FetchType.EAGER)
-    private Collection<Education> education;
-    //@OneToOne(mappedBy = "certificate")
-    //private Education education;
-
-    public Collection<Education> getEducation() {
-        return education;
-    }
-
-    public void setEducation(Collection<Education> education) {
-        this.education = education;
-    }
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+   
+    @ManyToOne
+    @JoinColumn(name = "COMPANY", nullable = true)
+    private Company company;
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
 
-   
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.description);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.type);
+        hash = 59 * hash + Objects.hashCode(this.company);
         return hash;
     }
 
@@ -103,7 +76,13 @@ public class Certificate extends AuditFields implements Serializable {
             return false;
         }
         final Certificate other = (Certificate) obj;
-        if (!Objects.equals(this.description, other.description)) {
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        if (!Objects.equals(this.company, other.company)) {
             return false;
         }
         return true;

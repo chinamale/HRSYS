@@ -36,22 +36,29 @@ import javax.persistence.TemporalType;
     private static final long serialVersionUID = 1L;
     private Integer id;
     
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="")
+
+    @OneToMany(mappedBy="employee",cascade={CascadeType.ALL},targetEntity=Education.class,fetch=FetchType.EAGER)
     private List<Education> education;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="")
+    @OneToMany(mappedBy="employee",targetEntity=LeaveDetails.class,fetch=FetchType.EAGER)
     private List<LeaveDetails> leaveDetails;
     
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="")
-    private List<Dependant> dependant;
+    @OneToMany(mappedBy="employee",targetEntity=Dependant.class,fetch=FetchType.EAGER)
+    private Collection  dependant;
 
-    //@OneToMany(cascade=CascadeType.ALL,mappedBy="employee",fetch = FetchType.EAGER)
-//    @ElementCollection
-//    @CollectionTable(name="PrevEmployer",joinColumns ={
-//    @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
-//    @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")})
+    @OneToMany(mappedBy="employee",targetEntity=Appraisal.class,fetch=FetchType.EAGER)
+    private Collection appraisal;
+
     @OneToMany(mappedBy="employee",targetEntity=PrevEmployer.class,fetch=FetchType.EAGER)
     private Collection prevEmployer;
+
+    public Collection getAppraisal() {
+        return appraisal;
+    }
+
+    public void setAppraisal(Collection appraisal) {
+        this.appraisal = appraisal;
+    }
 
     public Collection getPrevEmployer() {
         return prevEmployer;
@@ -60,14 +67,15 @@ import javax.persistence.TemporalType;
     public void setPrevEmployer(Collection prevEmployer) {
         this.prevEmployer = prevEmployer;
     }
-       
-    public List<Dependant> getDependant() {
+
+    public Collection getDependant() {
         return dependant;
     }
 
-    public void setDependant(List<Dependant> dependant) {
+    public void setDependant(Collection dependant) {
         this.dependant = dependant;
     }
+       
         
     public List<Education> getEducation() {
         return education;

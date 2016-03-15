@@ -58,23 +58,23 @@ public class UserService implements IUserService{
             em.persist(sys_user);
             em.persist(sys_user_group);
             
-            final JpaEntityManager jpaEntityManager = (JpaEntityManager) em.getDelegate();
-final UnitOfWorkChangeSet changeSet = (UnitOfWorkChangeSet) jpaEntityManager.getUnitOfWork().getCurrentChanges();
-final ObjectChangeSet objectChangeSet = (ObjectChangeSet) changeSet.getObjectChangeSetForClone(sys_user);
- 
-// Get a list of changed propertys and do something with that.
-final List<ChangeRecord> changedProperties = objectChangeSet.getChanges();
-for(final ChangeRecord property : changedProperties) {
-    System.out.println("Changed property: '" + property);
-}
- 
-// Check if a property called "coolProperty" has changed.
-final ChangeRecord coolPropertyChanges = objectChangeSet.getChangesForAttributeNamed("coolProperty");
-if(coolPropertyChanges != null) {
-    System.out.println("Property 'coolProperty' has changed from '" + coolPropertyChanges.getOldValue() + "' to '" + sys_user.getFirstname() + "'");
-}
-            
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+//            final JpaEntityManager jpaEntityManager = (JpaEntityManager) em.getDelegate();
+//final UnitOfWorkChangeSet changeSet = (UnitOfWorkChangeSet) jpaEntityManager.getUnitOfWork().getCurrentChanges();
+//final ObjectChangeSet objectChangeSet = (ObjectChangeSet) changeSet.getObjectChangeSetForClone(sys_user);
+// 
+//// Get a list of changed propertys and do something with that.
+//final List<ChangeRecord> changedProperties = objectChangeSet.getChanges();
+//for(final ChangeRecord property : changedProperties) {
+//    System.out.println("Changed property: '" + property);
+//}
+// 
+//// Check if a property called "coolProperty" has changed.
+//final ChangeRecord coolPropertyChanges = objectChangeSet.getChangesForAttributeNamed("coolProperty");
+//if(coolPropertyChanges != null) {
+//    System.out.println("Property 'coolProperty' has changed from '" + coolPropertyChanges.getOldValue() + "' to '" + sys_user.getFirstname() + "'");
+//}
+//            
+       } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
 

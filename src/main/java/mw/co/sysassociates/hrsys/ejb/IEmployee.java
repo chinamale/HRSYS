@@ -5,6 +5,7 @@
  */
 package mw.co.sysassociates.hrsys.ejb;
 
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 import javax.persistence.EntityExistsException;
@@ -24,8 +25,9 @@ public interface IEmployee {
     Employee findByFirstname(String firstname);
     int insertEmployee(String employeeNo, String company, String firstname, String surname, String sex, String title) throws EntityExistsException; 
 //        int insertPrevEmployers(String employeeNo, String company, List<PrevEmployer> prevEmployer) throws EntityExistsException; 
+    int addEducationDetails(String Employee, String company, String quali, String instit, String yearFrom, String yearTo);
     List<Education> getEmployeeEduDetails(Employee employee);
     List<LeaveDetails> getEmployeeLeaveDetails(Employee employee);
 //    List<PrevEmployer> getEmployeePrevEmployer(Employee employee);
-    List<Dependant> getEmployeeDependant(Employee employee);
+    Collection getEmployeeDependant(Employee employee);
 }

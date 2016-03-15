@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Input New Education Details</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+            <h:outputLabel for="Code" value="*Appraisal Code:"/>
+            <h:inputText id ="employeeNo" value="#{newEducationBean.employee}" title="Enter Employee Number" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="Code"/>
+            <br/>
+            <h:outputLabel for="qualification" value="*Qualification:"/>
+            <h:inputText id ="qualification" value="#{newEducationBean.qualification}" title="Enter Qualification" label="qualification" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="qualification"/>
+            <br/>
+            <h:outputLabel for="institution" value="*Institution:"/>
+            <h:inputText id ="institution" value="#{newEducationBean.institution}" title="Enter Institution" label="institution" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="institution"/>
+            <br/>
+            <h:outputLabel for="yearfrom" value="*Period from: "/>
+            <h:inputText id ="yearfrom" value="#{newEducationBean.yearFrom}" title="Enter Period From" label="yearfrom" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="yearfrom"/>
+            <br/>
+            <h:outputLabel for="yearto" value="*Period to: "/>
+            <h:inputText id ="yearto" value="#{newEducationBean.yearTo}" title="Enter Period to" label="yearto" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="yearto"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{newEducationBean.register}" title="Create New Appraisal Score"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+</html>

@@ -27,7 +27,7 @@ public class CertificateListener {
 	public void prePersist(Certificate cert) {
         cert.setInsby("Clifton");
         cert.setInsdate(new Date());
-        System.out.println("In pre persist" + cert.getDescription());
+        System.out.println("In pre persist" + cert.getAbbreviation());
     }
 	@PostPersist
 	public void postPersist(Certificate cert) {
@@ -37,7 +37,7 @@ public class CertificateListener {
 	public void preUpdate(Certificate cert) {
         cert.setAmmdate(new Date());
         cert.setAmmby("Clifton");
-        System.out.println("In pre update" + cert.getDescription());
+        System.out.println("In pre update" + cert.getAbbreviation());
     }
 	@PostUpdate
 	public void postUpdate(Certificate cert) {

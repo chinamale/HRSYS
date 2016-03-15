@@ -5,6 +5,7 @@
  */
 package mw.co.sysassociates.hrsys.ejb;
 
+import java.util.Collection;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
@@ -14,9 +15,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import mw.co.sysassociates.hrsys.entity.Appraisal;
+import mw.co.sysassociates.hrsys.entity.AppraisalScore;
+import mw.co.sysassociates.hrsys.entity.Certificate;
+import mw.co.sysassociates.hrsys.entity.Company;
 import mw.co.sysassociates.hrsys.entity.Dependant;
 import mw.co.sysassociates.hrsys.entity.Education;
 import mw.co.sysassociates.hrsys.entity.Employee;
+import mw.co.sysassociates.hrsys.entity.EmployeePK;
 import mw.co.sysassociates.hrsys.entity.LeaveDetails;
 import mw.co.sysassociates.hrsys.entity.PrevEmployer;
 import org.eclipse.persistence.exceptions.DatabaseException;
@@ -67,19 +73,19 @@ public class EmployeeService implements IEmployee {
         } catch (DatabaseException ex) {
             //Handle errors for JDBC
             System.out.println(ex.getMessage());
-            return 3;            
+            return 1;            
         } catch (PersistenceException ex) {
             //Handle errors for JDBC
             System.out.println(ex.getMessage());
-            return 3;
+            return 2;
         } catch (Exception e) {
 	    //Handle errors for Class.forName
             //e.printStackTrace();
             System.out.println(e.getMessage());
-            return 4;
+            return 3;
         } finally {
             //System.out.println("Goodbye!");
-            return 5;
+            return 4;
         }
         //  }
     }
@@ -100,8 +106,53 @@ public class EmployeeService implements IEmployee {
 //    }
     
     @Override
-    public List<Dependant> getEmployeeDependant(Employee employee) {
+    public Collection getEmployeeDependant(Employee employee) {
         return employee.getDependant();
+    }
+
+    @Override
+    public int addEducationDetails(String emplono, String company, String qualif, String instit, String yearFrom, String yearTo) {
+       try {
+        AppraisalScore appscore;
+        EmployeePK emplopk;
+        
+        Company comp = em.find(Company.class, company);
+        
+        emplopk = new EmployeePK();
+        emplopk.setCompany(company);
+        emplopk.setEmployeenumber(emplono);
+        
+        Employee employee = em.find(Employee.class, emplopk);
+        
+        Education education = new Education();
+        education.setEmployee(employee);
+        education.setInstitution(instit);
+        education.setYearfrom(yearFrom);
+        education.setYearto(yearTo);
+        
+         List<Certificate> elementList = em.createNamedQuery("Certificate.findByCode").setParameter("code", qualif).setParameter("company", comp).getResultList();
+         Certificate qualification = elementList.isEmpty() ? null : elementList.get(0);
+        //if not found, abort the transaction
+        education.setCertificate(qualification);
+        employee.getEducation().add(education);
+        return 0;         
+        } catch (DatabaseException ex) {
+            //Handle errors for JDBC
+            System.out.println(ex.getMessage());
+            return 3;            
+        } catch (PersistenceException ex) {
+            //Handle errors for JDBC
+            System.out.println(ex.getMessage());
+            return 3;
+        } catch (Exception e) {
+	    //Handle errors for Class.forName
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+            return 4;
+        } finally {
+            //System.out.println("Goodbye!");
+            return 5;
+        }
     }
     
 }

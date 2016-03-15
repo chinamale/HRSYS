@@ -102,6 +102,23 @@ public class NewEmployeeBean {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
+
+    public IEmployee getEmployeeSrv() {
+        return employeeSrv;
+    }
+
+    public void setEmployeeSrv(IEmployee employeeSrv) {
+        this.employeeSrv = employeeSrv;
+    }
+
+    public ICompany getCompSrv() {
+        return compSrv;
+    }
+
+    public void setCompSrv(ICompany compSrv) {
+        this.compSrv = compSrv;
+    }
+    
     
 }
 

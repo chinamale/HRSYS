@@ -68,16 +68,7 @@ public class Dependant extends AuditFields implements Serializable {
     @ManyToOne
     @JoinColumn(name = "RELATIONSHIP", nullable = true)
     private Relationship relationship;
-    //@Column(name = "INSBY", nullable = true,length=30)
-    //private String insby;
-    //@Temporal(TemporalType.DATE)
-    //@Column(name = "INSDATE")
-    //private Date insdate;
-    //@Column(name = "AMMBY", nullable = true,length = 30)
-    //private String ammby;
-    //@Temporal(TemporalType.DATE)
-    //@Column(name = "AMMDATE")
-    //private Date ammdate;  
+
     public Dependant() {
     }
     
