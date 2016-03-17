@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,13 +40,7 @@ public class Dependant extends AuditFields implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;  
-    //@Id
-    //@Basic(optional = false)
-    //@Column(name = "ID", nullable = false)
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    //private Integer id;  
-    
+    private Integer id;      
     @Column(name = "FIRSTNAME", nullable = true,length = 30)
     private String firstname;
     
@@ -53,20 +49,14 @@ public class Dependant extends AuditFields implements Serializable {
         @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
         @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
     })
-    //    @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
-    //    @JoinColumn(name="EMPLOYEE", referencedColumnName="emploPK")
-    
-    //@JoinColumn(name = "EMPLOYEE", nullable = false)
     private Employee employee;
-    //@JoinColumn(name = "COMPANY", nullable = false)
-    //private Company company;
     @Column(name = "SURNAME", nullable = true,length = 30)
     private String surname;
     @Temporal(TemporalType.DATE)
     @Column(name = "DATEOFBIRTH")
     private Date dateofbirth;
-    @ManyToOne
-    @JoinColumn(name = "RELATIONSHIP", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RELATIONSHIP", referencedColumnName = "ID",nullable = false)
     private Relationship relationship;
 
     public Dependant() {

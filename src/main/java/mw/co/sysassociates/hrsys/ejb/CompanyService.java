@@ -42,7 +42,7 @@ public class CompanyService implements ICompany {
             Company comp = em.find(Company.class,"01");
             Employee emp;
             EmployeePK emplopk;
-            PrevEmployer  prevemp;
+            //PrevEmployer  prevemp;
             
             //emp = new Employee(employeeNo, comp.getCompanyId(), firstname, surname, sex, title);
             emplopk = new EmployeePK();
@@ -55,22 +55,8 @@ public class CompanyService implements ICompany {
             emp.setSurname(surname);
             emp.setSex(sex);
             emp.setTitle(title);
-            
-            prevemp = new PrevEmployer();
-            prevemp.setEmployee(emp);
-            prevemp.setOrganisation("National Bank");
-            prevemp.setYearfrom("1999");
-            prevemp.setPost("Manager");
-            //em.persist(prevemp);
             comp.getEmployees().add(emp);
-   //         em.refresh(emp);
-            //Employee emp1 = em.find(Employee.class,emplopk);
-    //        emp.getPrevEmployer().add(prevemp);
-            //em.merge(emp);
-            //emp.getPrevEmployer().add(prevemp);
-            //comp.
-            em.persist(prevemp);
-            
+
             return 0;
 
         } catch (DatabaseException ex) {

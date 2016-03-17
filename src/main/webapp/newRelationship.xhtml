@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Input New Relationship</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+            <h:outputLabel for="description" value="*Description:"/>
+            <h:inputText id ="description" value="#{newRelationshipBean.description}" title="Enter Relationship Description" label="description" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="description"/>
+            <br/>
+            <h:outputLabel for="validfor" value="*Valid for:"/>
+            <h:inputText id ="validfor" value="#{newRelationshipBean.validfor}" title="For what purpose e.g. pensions, benefits entitlement" label="valid for" required="false"/>
+            &nbsp; 
+            <h:message style="color:red" for="validfor"/>
+            <br/>
+            <h:outputLabel for="agelimit" value="*Age limit:"/>
+            <h:inputText id ="agelimit" value="#{newRelationshipBean.agelimit}" title="Age above which the dependant will not be recognised" label="agelimit" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="agelimit"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{newRelationshipBean.addRelationship()}" title="Create New Appraisal Score"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+</html>

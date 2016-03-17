@@ -12,5 +12,5 @@ import javax.persistence.EntityExistsException;
  * @author Clifton T. Mtengezo
  */
 public interface ICompany {
-     int insertEmployee(String employeeNo,String firstname, String surname, String sex, String title) throws EntityExistsException;    
+int insertEmployee(String employeeNo,String firstname, String surname, String sex, String title) throws EntityExistsException;    
 }

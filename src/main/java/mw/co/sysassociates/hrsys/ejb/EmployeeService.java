@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import mw.co.sysassociates.hrsys.entity.Appraisal;
@@ -20,6 +21,7 @@ import mw.co.sysassociates.hrsys.entity.AppraisalScore;
 import mw.co.sysassociates.hrsys.entity.Certificate;
 import mw.co.sysassociates.hrsys.entity.Company;
 import mw.co.sysassociates.hrsys.entity.Dependant;
+import mw.co.sysassociates.hrsys.entity.Division;
 import mw.co.sysassociates.hrsys.entity.Education;
 import mw.co.sysassociates.hrsys.entity.Employee;
 import mw.co.sysassociates.hrsys.entity.EmployeePK;
@@ -50,7 +52,7 @@ public class EmployeeService implements IEmployee {
     }
 
     @Override
-    public int insertEmployee(String employeeNo, String company, String firstname, String surname, String sex, String title) throws EntityExistsException {
+    public int insertEmployee(String employeeNo, String company, String firstname, String surname, String sex, String title, String division) throws EntityExistsException {
        // EntityTransaction userTransaction = em.getTransaction();
 
         //if (null != em.find(Employee.class, emp.getEmployeenumber())) {
@@ -59,14 +61,27 @@ public class EmployeeService implements IEmployee {
         //	}else{
         try {
         //    userTransaction.begin();
+            //Company comp = em.find(Company.class,company);
             Employee emp;
-            emp = new Employee(employeeNo, company, firstname,surname,sex,title);
-            //emp.setFirstname(firstname);
-            //emp.setSurname(surname);
-            //emp.setSex(sex);
-            //emp.setTitle(title);
+            EmployeePK emplopk;
+            //PrevEmployer  prevemp;
+            
+            //emp = new Employee(employeeNo, comp.getCompanyId(), firstname, surname, sex, title);
+            emplopk = new EmployeePK();
+            emplopk.setCompany(company);
+            emplopk.setEmployeenumber(employeeNo);
+            
+            emp = new Employee();
+            emp.setEmploPK(emplopk); 
+            emp.setFirstname(firstname);
+            emp.setSurname(surname);
+            emp.setSex(sex);
+            emp.setTitle(title);
+            int divkey = Integer.parseInt(division);
+            Division div = em.find(Division.class,divkey);
+            emp.setDivision(div);
             em.persist(emp);
-            em.flush();
+         //   em.flush();
         //    userTransaction.commit();
             return 0;
             

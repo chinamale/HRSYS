@@ -58,7 +58,7 @@ public class Education extends AuditFields implements Serializable {
     private String yearto;
     @Column(name = "INSTITUTION", nullable = true,length = 40)
     private String institution;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "QUALIFICATION", referencedColumnName = "ID",nullable = false)
     private Certificate certificate;
    

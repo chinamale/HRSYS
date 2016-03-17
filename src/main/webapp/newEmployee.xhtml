@@ -34,7 +34,12 @@
             &nbsp; 
             <h:message style="color:red" for="title"/>
             <br/>
-            <h:commandButton id="register" type="submit" value="Save Details" action="#{newEmployeeBean.register}" title="Create New Employee"/>
+            <h:outputLabel for="division" value="*Division"/>
+            <h:inputText id ="division" value="#{newEmployeeBean.division}" title="Enter Division" label="division" required="true"  requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="division"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{newEmployeeBean.register()}" title="Create New Employee"/>
             <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
         </h:form>
     </h:body>

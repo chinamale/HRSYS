@@ -5,7 +5,6 @@
  */
 package mw.co.sysassociates.hrsys.entity;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;

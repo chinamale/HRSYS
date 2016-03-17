@@ -13,11 +13,14 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +28,7 @@ import javax.persistence.TemporalType;
  *
  * @author Clifton T. Mtengezo
  */
-
+    @Table(indexes = {@Index(name="IDX_EMPL_DIV_COMPANY",columnList="division,company")})
     @Entity
         @NamedQueries({
 	@NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
@@ -44,13 +47,22 @@ import javax.persistence.TemporalType;
     private List<LeaveDetails> leaveDetails;
     
     @OneToMany(mappedBy="employee",targetEntity=Dependant.class,fetch=FetchType.EAGER)
-    private Collection  dependant;
+    private List<Dependant>  dependant;
 
     @OneToMany(mappedBy="employee",targetEntity=Appraisal.class,fetch=FetchType.EAGER)
     private Collection appraisal;
 
     @OneToMany(mappedBy="employee",targetEntity=PrevEmployer.class,fetch=FetchType.EAGER)
     private Collection prevEmployer;
+    
+    @ManyToOne
+    @JoinColumn(name="company",nullable=false, insertable=false, updatable=false)
+    private Company company;  // Added to support joined query
+    
+    @ManyToOne
+    @JoinColumn(name = "division", nullable=false, insertable=true, updatable=false)
+    private Division division; 
+
 
     public Collection getAppraisal() {
         return appraisal;
@@ -68,15 +80,14 @@ import javax.persistence.TemporalType;
         this.prevEmployer = prevEmployer;
     }
 
-    public Collection getDependant() {
+    public List<Dependant> getDependant() {
         return dependant;
     }
 
-    public void setDependant(Collection dependant) {
+    public void setDependant(List<Dependant> dependant) {
         this.dependant = dependant;
     }
-       
-        
+    
     public List<Education> getEducation() {
         return education;
     }
@@ -84,6 +95,8 @@ import javax.persistence.TemporalType;
     public void setEducation(List<Education> education) {
         this.education = education;
     }
+    
+    
     
     @EmbeddedId
     private EmployeePK emploPK;
@@ -96,12 +109,6 @@ import javax.persistence.TemporalType;
         this.emploPK = emploPK;
     }
     
-    //@Column(name="corp_fk")
-    //private Integer Corp_fk; // Foreign key to table corporation
-    
-    @ManyToOne
-    @JoinColumn(name="company",nullable=false, insertable=false, updatable=false)
-    private Company company;  // Added to support joined query
     
     public Company getCompany() {
         return company;
@@ -127,11 +134,6 @@ import javax.persistence.TemporalType;
     private String addressofspouse3;
     @Column(name = "ADDRESSOFSPOUSE4", nullable = true,length = 35)
     private String addressofspouse4;
-//    @Column(name = "AMMBY", nullable = true,length = 35)
-//    private String ammby;
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "AMMDATE")
-//    private Date ammdate;
     @Column(name = "ANNUALLEAVEDAYSTAKEN")
     private double annualleavedaystaken;
     @Column(name = "ANNUALLEAVEENTITLEMENT")
@@ -191,18 +193,14 @@ import javax.persistence.TemporalType;
     private String disciplstatus;
     @Column(name = "DISTRICT", nullable = true,length = 35)
     private String district;
-    @Column(name = "DIVISION", nullable = true,length = 20)
-    private String division;
+ //   @Column(name = "DIVISION", nullable = true,length = 20)
+ //   private String division;
     @Column(name = "DEPARTMENT", nullable = true,length = 20)
     private String department;
     @Column(name = "SECTION", nullable = true,length = 20)
     private String SECT;
     @Column(name = "EMPLOYEECONTRIBUTION")
     private double employeecontributions;
-    //@Id
-    //@Basic(optional = false)
-    //@Column(name = "EMPLOYEENUMBER", length = 10)
-    //private String employeenumber;
     @Column(name = "EMPLOYMENTSTATUS", nullable = true,length = 1)
     private String employmentstatus;
     @Column(name = "ETIN", nullable = true,length = 20)
@@ -225,11 +223,6 @@ import javax.persistence.TemporalType;
     private String houseallocated;
     @Column(name = "INITIALS", nullable = true,length = 3)
     private String initials;
-//    @Column(name = "INSBY", nullable = true,length = 20)
-//    private String insby;
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "INSDATE")
-//    private Date insdate;
     @Column(name = "LARGESTCONTSICKLEAVETAKEN")
     private double largestcontsickleavetaken;
     @Column(name = "LOANSINDICATOR", nullable = true,length = 1)
@@ -323,20 +316,12 @@ import javax.persistence.TemporalType;
 public Employee(String employeeNo, String company, String firstname, String surname, String sex, String title){
 
 }
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+
 
     public void setCompany(Company company) {
         this.company = company;
     }
-
-    
-    
+ 
     public String getAddressofnextofkin4() {
         return addressofnextofkin4;
     }
@@ -439,14 +424,6 @@ public Employee(String employeeNo, String company, String firstname, String surn
     public void setBasicdeterminationmethod(String basicdeterminationmethod) {
         this.basicdeterminationmethod = basicdeterminationmethod;
     }
-
-  //  public String getCompanyid() {
-  //      return companyid;
-  //  }
-
-  //  public void setCompanyid(String companyid) {
-  //      this.companyid = companyid;
-  //  }
 
     public String getCurrentgrade() {
         return currentgrade;
@@ -568,21 +545,13 @@ public Employee(String employeeNo, String company, String firstname, String surn
         this.district = district;
     }
 
-    public String getDivision() {
+    public Division getDivision() {
         return division;
     }
 
-    public void setDivision(String division) {
+    public void setDivision(Division division) {
         this.division = division;
     }
-
-  //  public String getEmployeenumber() {
-  //      return employeenumber;
-  //  }
-
-  //  public void setEmployeenumber(String employeenumber) {
-  //      this.employeenumber = employeenumber;
-  //  }
 
     public String getEmploymentstatus() {
         return employmentstatus;

@@ -53,8 +53,11 @@ public class Company implements Serializable {
 @Column(name = "COMPANYID", nullable = false,length = 2)
 private String companyId;
 
-@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="company")
+@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="company")
 private List<Employee> employees;
+
+@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="company")
+private List<Division> divisions;
 
 @Column(name = "COMPANYNAME", nullable = true,length = 50)
 private String companyName;
@@ -871,6 +874,14 @@ private Double tevetLevy;
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public List<Division> getDivisions() {
+        return divisions;
+    }
+
+    public void setDivisions(List<Division> divisions) {
+        this.divisions = divisions;
     }
     
     

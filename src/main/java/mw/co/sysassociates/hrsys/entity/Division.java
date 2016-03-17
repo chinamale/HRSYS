@@ -6,23 +6,32 @@
 package mw.co.sysassociates.hrsys.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumns;
+import javax.persistence.Table;
 
 /**
  *
  * @author Clifton T. Mtengezo
- */
+ */ @Table(indexes = {@Index(name="I_DIV_CODE_COMPANY",columnList="code,company",unique=true)})
     @Entity
         @NamedQueries({
 	@NamedQuery(name = "Division.findAllByCompany", query = "SELECT d FROM Division d where d.company = :comp"),
@@ -38,9 +47,12 @@ public class Division extends BasicFields implements Serializable {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;  
+    @ManyToOne
+    @JoinColumn(name = "COMPANY", nullable = true)
+    private Company company;
     
-    //@Column(name = "NAME", nullable = true,length = 30)
-    //private String name;
+    @OneToMany(mappedBy="division",targetEntity=Employee.class,fetch=FetchType.EAGER)
+    private List<Employee> employees;
     
     //@ManyToOne
     //    @JoinColumns({
@@ -48,59 +60,8 @@ public class Division extends BasicFields implements Serializable {
     //    @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
     //})
     //private Employee employee;
+
     
-//@JoinColumn(name = "COMPANY", nullable = false)
-    //private Company company;
-//    @Column(name = "LONGNAME", nullable = true,length = 60)
-//    private String longname;
-//    
-//    @Column(name = "CODE", nullable = true,length = 10)
-//    private String code;
-//    
-//    @Column(name = "NAME", nullable = true,length = 30)
-//    private String name;
-//    
-//    @Column(name = "ABBREVIATION", nullable = true,length = 30)
-//    private String abbreviation;
-//    
-//    @Column(name = "LOCATION", nullable = true,length = 30)
-//    private String location;
-//
-//    @Column(name = "ADDRESS1", nullable = true,length = 30)
-//    private String address1;
-//    
-//    @Column(name = "ADDRESS2", nullable = true,length = 30)
-//    private String address2;
-//    
-//    @Column(name = "ADDRESS3", nullable = true,length = 30)
-//    private String address3;
-//    
-//    @Column(name = "ADDRESS4", nullable = true,length = 30)
-//    private String address4;
-//    
-//    @Column(name = "TELEPHONE", nullable = true,length = 30)
-//    private String telephone;
-//    
-//    @Column(name = "EMAILADDRESS", nullable = true,length = 30)
-//    private String emailaddress;
-//    
-    
-  //  @Temporal(TemporalType.DATE)
-  //  @Column(name = "DATEOFBIRTH")
-  //  private Date dateofbirth;
-    @ManyToOne
-    @JoinColumn(name = "COMPANY", nullable = true)
-    private Company company;
-    //@Column(name = "INSBY", nullable = true,length=30)
-    //private String insby;
-    //@Temporal(TemporalType.DATE)
-    //@Column(name = "INSDATE")
-    //private Date insdate;
-    //@Column(name = "AMMBY", nullable = true,length = 30)
-    //private String ammby;
-    //@Temporal(TemporalType.DATE)
-    //@Column(name = "AMMDATE")
-    //private Date ammdate;  
     public Division() {
     }
 
@@ -112,6 +73,22 @@ public class Division extends BasicFields implements Serializable {
         this.company = company;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+//    public Employee getHeadedby() {
+//        return headedby;
+//    }
+//
+//    public void setHeadedby(Employee headedby) {
+//        this.headedby = headedby;
+//    }
+    
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.

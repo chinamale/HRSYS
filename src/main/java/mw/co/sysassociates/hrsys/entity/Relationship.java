@@ -16,6 +16,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -39,17 +41,28 @@ public class Relationship extends AuditFields implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    @Column(name = "DESCRIPTION",length = 40)
+    @Column(name = "DESCRIPTION",length = 20, nullable = false)
     private String description;   
     
-    private Collection<Dependant> dependant;
+    @ManyToOne
+    @JoinColumn(name = "COMPANY", nullable = false)
+    private Company company;
+    
+    /* Reasons for which the relationship can be recognised, eg. Medical Aid purpose, Benefits purpose
+    */    
+    @Column(name = "VALIDFOR",length = 10)
+    private String validfor;
+    /* Age above which dependents will not be recognised
+    */
+    @Column(name = "AGELIMIT")
+    private int agelimit;
 
-    public Collection<Dependant> getDependant() {
-        return dependant;
+    public int getAgelimit() {
+        return agelimit;
     }
 
-    public void setDependant(Collection<Dependant> dependant) {
-        this.dependant = dependant;
+    public void setAgelimit(int agelimit) {
+        this.agelimit = agelimit;
     }
 
     public String getDescription() {
@@ -60,6 +73,21 @@ public class Relationship extends AuditFields implements Serializable {
         this.description = description;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public String getValidfor() {
+        return validfor;
+    }
+
+    public void setValidfor(String validfor) {
+        this.validfor = validfor;
+    }  
     
     @Override
     public int hashCode() {

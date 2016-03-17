@@ -32,14 +32,15 @@ public class NewEmployeeBean {
 
     @EJB
     IEmployee employeeSrv;
-    @EJB
-    ICompany compSrv;
+    //@EJB
+    //ICompany compSrv;
     String employeeNo;
     String company;
     String firstname;
     String surname;
     String title;
     String sex;
+    String division;
     public NewEmployeeBean() {
 
     }
@@ -47,7 +48,8 @@ public class NewEmployeeBean {
     //call the injected EJB
     public String register() {
         String role = "users";
-        int result = compSrv.insertEmployee(employeeNo, firstname,surname,sex,title);
+        String comp = "01";
+        int result = employeeSrv.insertEmployee(employeeNo,comp, firstname, surname, sex, title, division);
   
         return "index";
     }
@@ -111,12 +113,12 @@ public class NewEmployeeBean {
         this.employeeSrv = employeeSrv;
     }
 
-    public ICompany getCompSrv() {
-        return compSrv;
+    public String getDivision() {
+        return division;
     }
 
-    public void setCompSrv(ICompany compSrv) {
-        this.compSrv = compSrv;
+    public void setDivision(String division) {
+        this.division = division;
     }
     
     
