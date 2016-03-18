@@ -3,33 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Input New Appraisal Score</title>
+        <title>Input New Certificate</title>
     </h:head>
     <h:body>
         <h:form>
-            Fill in the details and press the register button.
+            Fill in the details and press the Save button.
             <br/>
-            <h:outputLabel for="code" value="*Appraisal Code:"/>
-            <h:inputText id ="code" value="#{newAppraisalScoreBean.code}" title="code" required="true" requiredMessage="Mandatory Field"/>
+            <h:outputLabel for="code" value="*Certifcate:"/>
+            <h:inputText id ="code" value="#{certificateBean.code}" title="code" required="true" requiredMessage="Mandatory Field"/>
             &nbsp; 
             <h:message style="color:red" for="code"/>
             <br/>
             <h:outputLabel for="abbreviation" value="*Abbreviation:"/>
-            <h:inputText id ="abbreviation" value="#{newAppraisalScoreBean.abbreviation}" title="Enter Abbreviation" label="abbreviation" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="abbreviation" value="#{certificateBean.abbreviation}" title="Enter Abbreviation" label="abbreviation" required="true" requiredMessage="Mandatory Field"/>
             &nbsp; 
             <h:message style="color:red" for="abbreviation"/>
             <br/>
             <h:outputLabel for="shortname" value="*Short name:"/>
-            <h:inputText id ="shortname" value="#{newAppraisalScoreBean.name}" title="Enter shortname" label="shortname" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="shortname" value="#{certificateBean.name}" title="Enter shortname" label="shortname" required="true" requiredMessage="Mandatory Field"/>
             &nbsp; 
             <h:message style="color:red" for="shortname"/>
             <br/>
             <h:outputLabel for="longname" value="*Longname: "/>
-            <h:inputText id ="longname" value="#{newAppraisalScoreBean.longname}" title="Enter Long name" label="longname" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="longname" value="#{certificateBean.longname}" title="Enter Long name" label="longname" required="true" requiredMessage="Mandatory Field"/>
             &nbsp; 
             <h:message style="color:red" for="longname"/>
             <br/>
-            <h:commandButton id="register" type="submit" value="Save Details" action="#{newAppraisalScoreBean.register}" title="Create New Appraisal Score"/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{certificateBean.addCertificate()}" title="Create New Certificate"/>
             <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
         </h:form>
     </h:body>
