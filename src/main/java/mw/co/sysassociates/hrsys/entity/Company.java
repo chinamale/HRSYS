@@ -6,37 +6,23 @@
 package mw.co.sysassociates.hrsys.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Objects;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -44,196 +30,195 @@ import javax.persistence.Transient;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
-@NamedQuery(name = "Company.findByAbbreviation", query = "SELECT c FROM Company c WHERE c.abbreviation = :abbrev"),
-})
+    @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
+    @NamedQuery(name = "Company.findByAbbreviation", query = "SELECT c FROM Company c WHERE c.abbreviation = :abbrev"),
+    @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.companyName = :companyName"),})
 @EntityListeners({CompanyListener.class})
 public class Company implements Serializable {
-@Id
-@Column(name = "COMPANYID", nullable = false,length = 2)
-private String companyId;
 
-@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="company")
-private List<Employee> employees;
+    @Id
+    @Column(name = "COMPANYID", nullable = false, length = 2)
+    private String companyId;
 
-@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="company")
-private List<Division> divisions;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Employee> employees;
 
-@Column(name = "COMPANYNAME", nullable = true,length = 50)
-private String companyName;
-@Column(name = "COMPANYSHORTNAME", nullable = true,length = 35)
-private String companyShortname;
-@Column(name = "ABBREVIATION", nullable = true,length = 10)
-private String abbreviation;
-@Column(name = "ADDRESS", nullable = true,length = 35)
-private String address;
-@Column(name = "ADDRESS1", nullable = true,length = 35)
-private String address1;
-@Column(name = "ADDRESS2", nullable = true,length = 35)
-private String address2;
-@Column(name = "ADDRESS3", nullable = true,length = 35)
-private String address3;
-@Column(name = "ADDRESS4", nullable = true,length = 35)
-private String address4;
-@Column(name = "FAX", nullable = true,length = 10)
-private String fax;
-@Column(name = "WEBSITE", nullable = true,length = 40)
-private String website;
-@Column(name = "PHYSICALADDRESS", nullable = true,length = 35)
-private String physicalAddress;
-@Column(name = "PHYSICALADDRESS1", nullable = true,length = 35)
-private String physicalAddress1;
-@Column(name = "EMAILADDRESS", nullable = true,length = 35)
-private String emailAddress;
-@Column(name = "CURRENTPERIODMONTH", nullable = true,length = 35)
-private String currentPeriodMonth;
-@Column(name = "CURRENTPERIODYEAR", nullable = true,length = 35)
-private String currentPeriodYear;
-@Temporal(TemporalType.DATE)
-@Column(name = "SYSTEMDATE")
-private Date systemDate;
-@Temporal(TemporalType.DATE)
-@Column(name = "PAYROLLDATE")
-private Date payrollDate;
-@Column(name = "MEDICALAIDCIRCLEENDDATE", nullable = true,length = 12)
-private String medicalaidCircleEndDate;
-@Column(name = "PAYFREQUENCY", nullable = true,length = 1)
-private String payFrequency;
-@Column(name = "PERIODSTARTDATE", nullable = true,length = 35)
-private String periodStartdate;
-@Column(name = "NUMBEROFPERIODS")
-private Double numberOfPeriods;
-@Column(name = "LEAVEENTITLCALCMETHOD", nullable = true,length = 1)
-private String leaveEntitlCalcMethod;
-@Column(name = "LEAVEENTITLCALCBASEDATE", nullable = true,length = 1)
-private String leaveEntitlCalcBaseDate;
-@Column(name = "PROBATIONPERIODDETERMINEDBY", nullable = true,length = 1)
-private String probationPeriodDeterminedBy;
-@Column(name = "LEAVEGRANTDETERMINEDBY", nullable = true,length = 1)
-private String leaveGrantDeterminedBy;
-@Column(name = "LEAVEGRANTAMOUNT")
-private Double leaveGrantAmount;
-@Column(name = "LEAVEENTITLEMENTSTARTSFROM", nullable = true,length = 35)
-private String leaveEntitlementStartsFrom;
-@Column(name = "EMPLOYEENUMBERFLDLENGTH")
-private Byte employeeNumberFldLength;
-@Column(name = "NUMBEROFWORKINGDAYSPERMONTH")
-private Double numberOfWorkingDaysPerMonth;
-@Column(name = "NUMBEROFWORKINGHOURSPERDAY")
-private Double numberOfWorkingHoursPerDay;
-@Column(name = "CARRYFWDBALANCES", nullable = true,length = 1)
-private String carryFwdBalances;
-@Column(name = "PAYEREF", nullable = true,length = 20)
-private String payeRef;
-@Column(name = "TAXAUTHNAME", nullable = true,length = 35)
-private String taxAuthName;
-@Column(name = "TAXAUTHSHORTNAME", nullable = true,length = 35)
-private String taxAuthShortname;
-@Column(name = "TAXAUTHADDRESS", nullable = true,length = 35)
-private String taxAuthAddress;
-@Column(name = "TAXAUTHADDRESS1", nullable = true,length = 35)
-private String taxAuthAddress1;
-@Column(name = "TAXAUTHADDRESS2", nullable = true,length = 35)
-private String taxAuthAddress2;
-@Column(name = "TAXAUTHADDRESS3", nullable = true,length = 35)
-private String taxAuthAddress3;
-@Column(name = "TAXAUTHADDRESS4", nullable = true,length = 35)
-private String taxAuthAddress4;
-@Column(name = "TAXAUTHTELEPHONE", nullable = true,length = 20)
-private String taxAuthTelephone;
-@Column(name = "TAXAUTHFAX", nullable = true,length = 15)
-private String taxAuthFax;
-@Column(name = "TAXAUTHPHYSICALADDRESS", nullable = true,length = 20)
-private String taxAuthPhysicalAddress;
-@Column(name = "TAXAUTHPHYSICALADDRESS1", nullable = true,length = 20)
-private String taxAuthPhysicalAddress1;
-@Column(name = "INSBY", nullable = true, length = 20)
-private String insBy;
-@Temporal(TemporalType.DATE)
-@Column(name = "INSDATE")
-private Date insDate;
-@Temporal(TemporalType.DATE)
-@Column(name = "AMMDATE")
-private Date ammDate;
-@Column(name = "AMMBY", nullable = true,length = 35)
-private String ammBy;
-@Column(name = "MAINBANKACCOUNTNUMBER", nullable = true,length = 15)
-private String mainAccountnumber;
-@Column(name = "PENSIONCONTRIBUTION", nullable = true,length = 15)
-private Double pensionContribution;
-@Column(name = "ENDOFYEARTAX", nullable = true,length = 12)
-private String endOfyearTax;
-@Column(name = "ENDOFYEARPERSSYS", nullable = true,length = 12)
-private String endOfyearPersSys;
-@Column(name = "ENDOFYEARLOANSSYS", nullable = true,length = 12)
-private String endOfyearLoansSys;
-@Column(name = "ENDOFYEARMEDICALAIDSYS", nullable = true,length = 12)
-private String endOfyearMedicalAidSys;
-@Column(name = "ENDOFYEARPENSIONSYS", nullable = true,length = 12)
-private String endOfyearPensionSys;
-@Column(name = "ENDOFYEARPAYROLLSYS", nullable = true,length = 12)
-private String endOfyearPayrollSys;
-@Column(name = "DEFAULTSALARIESACCOUNT", nullable = true,length = 15)
-private String defaultSalariesAccountnumber;
-@Column(name = "DEFAULTEMPLOYEESTATUS", nullable = true,length = 3)
-private String defaultEmployeeStatus;
-@Column(name = "PENSIONADMINCHARGE")
-private Double pensionAdminCharge;
-@Column(name = "OFFENCEVALIDFOR")
-private Double offenceValidFor;
-@Column(name = "PASSFORINSERTNEWEMP", nullable = true,length = 100)
-private String passInsertNewEmp;
-@Column(name = "PASSFORDELEMPL", nullable = true,length = 100)
-private String passForDelEmpl;
-@Column(name = "PASSFORPAYROLL", nullable = true,length = 100)
-private String passForPayroll;
-@Column(name = "PASSFOREOMP", nullable = true,length = 100)
-private String passForEOMP;
-@Column(name = "PASSFORCHANGESAL", nullable = true,length = 100)
-private String passForChangeSal;
-@Column(name = "PASSFORTAXYEAREND", nullable = true,length = 100)
-private String passForTaxYearend;
-@Column(name = "PASSFORPERSYEAREND", nullable = true,length = 100)
-private String passForPersYearEnd;
-@Column(name = "PASSFORRESETTRANSHIST", nullable = true,length = 100)
-private String passForResetTranshist;
-@Column(name = "TAXRECONFLAG", nullable = true,length = 1)
-private String taxreconFlag;
-@Column(name = "PROBATIONPERIOD")
-private Double probationPeriod;
-@Column(name = "PAYSLIPMESSAGE", nullable = true,length = 35)
-private String payslipMessage;
-@Column(name = "PAYSLIPMESSAGE1", nullable = true,length = 35)
-private String payslipMessage1;
-@Column(name = "PAYSLIPMESSAGE2", nullable = true,length = 35)
-private String payslipMessage2;
-@Column(name = "PAYSLIPMESSAGE3", nullable = true,length = 35)
-private String payslipMessage3;
-@Column(name = "MINIMUMMONTHLYGROSSSALARY")
-private Double minimumMonthlyGrossSalary;
-@Column(name = "MINIMUMMONTHLYNETSALARY")
-private Double minimumMonthlyNetSalary;
-@Column(name = "ACTIONTAKENNETSALARYLOW", nullable = true,length = 1)
-private String actionTakenNetsalaryLow;
-@Column(name = "SALARYFILEENCRYPTIONKEY", nullable = true,length = 35)
-private String salaryFileEncryptionKey;
-@Column(name = "TEVETLEVY")
-private Double tevetLevy;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Division> divisions;
+
+    @Column(name = "COMPANYNAME", nullable = true, length = 50)
+    private String companyName;
+    @Column(name = "COMPANYSHORTNAME", nullable = true, length = 35)
+    private String companyShortname;
+    @Column(name = "ABBREVIATION", nullable = true, length = 10)
+    private String abbreviation;
+    @Column(name = "ADDRESS", nullable = true, length = 35)
+    private String address;
+    @Column(name = "ADDRESS1", nullable = true, length = 35)
+    private String address1;
+    @Column(name = "ADDRESS2", nullable = true, length = 35)
+    private String address2;
+    @Column(name = "ADDRESS3", nullable = true, length = 35)
+    private String address3;
+    @Column(name = "ADDRESS4", nullable = true, length = 35)
+    private String address4;
+    @Column(name = "FAX", nullable = true, length = 10)
+    private String fax;
+    @Column(name = "WEBSITE", nullable = true, length = 40)
+    private String website;
+    @Column(name = "PHYSICALADDRESS", nullable = true, length = 35)
+    private String physicalAddress;
+    @Column(name = "PHYSICALADDRESS1", nullable = true, length = 35)
+    private String physicalAddress1;
+    @Column(name = "EMAILADDRESS", nullable = true, length = 35)
+    private String emailAddress;
+    @Column(name = "CURRENTPERIODMONTH", nullable = true, length = 35)
+    private String currentPeriodMonth;
+    @Column(name = "CURRENTPERIODYEAR", nullable = true, length = 35)
+    private String currentPeriodYear;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "SYSTEMDATE")
+    private Date systemDate;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "PAYROLLDATE")
+    private Date payrollDate;
+    @Column(name = "MEDICALAIDCIRCLEENDDATE", nullable = true, length = 12)
+    private String medicalaidCircleEndDate;
+    @Column(name = "PAYFREQUENCY", nullable = true, length = 1)
+    private String payFrequency;
+    @Column(name = "PERIODSTARTDATE", nullable = true, length = 35)
+    private String periodStartdate;
+    @Column(name = "NUMBEROFPERIODS")
+    private Double numberOfPeriods;
+    @Column(name = "LEAVEENTITLCALCMETHOD", nullable = true, length = 1)
+    private String leaveEntitlCalcMethod;
+    @Column(name = "LEAVEENTITLCALCBASEDATE", nullable = true, length = 1)
+    private String leaveEntitlCalcBaseDate;
+    @Column(name = "PROBATIONPERIODDETERMINEDBY", nullable = true, length = 1)
+    private String probationPeriodDeterminedBy;
+    @Column(name = "LEAVEGRANTDETERMINEDBY", nullable = true, length = 1)
+    private String leaveGrantDeterminedBy;
+    @Column(name = "LEAVEGRANTAMOUNT")
+    private Double leaveGrantAmount;
+    @Column(name = "LEAVEENTITLEMENTSTARTSFROM", nullable = true, length = 35)
+    private String leaveEntitlementStartsFrom;
+    @Column(name = "EMPLOYEENUMBERFLDLENGTH")
+    private Byte employeeNumberFldLength;
+    @Column(name = "NUMBEROFWORKINGDAYSPERMONTH")
+    private Double numberOfWorkingDaysPerMonth;
+    @Column(name = "NUMBEROFWORKINGHOURSPERDAY")
+    private Double numberOfWorkingHoursPerDay;
+    @Column(name = "CARRYFWDBALANCES", nullable = true, length = 1)
+    private String carryFwdBalances;
+    @Column(name = "PAYEREF", nullable = true, length = 20)
+    private String payeRef;
+    @Column(name = "TAXAUTHNAME", nullable = true, length = 35)
+    private String taxAuthName;
+    @Column(name = "TAXAUTHSHORTNAME", nullable = true, length = 35)
+    private String taxAuthShortname;
+    @Column(name = "TAXAUTHADDRESS", nullable = true, length = 35)
+    private String taxAuthAddress;
+    @Column(name = "TAXAUTHADDRESS1", nullable = true, length = 35)
+    private String taxAuthAddress1;
+    @Column(name = "TAXAUTHADDRESS2", nullable = true, length = 35)
+    private String taxAuthAddress2;
+    @Column(name = "TAXAUTHADDRESS3", nullable = true, length = 35)
+    private String taxAuthAddress3;
+    @Column(name = "TAXAUTHADDRESS4", nullable = true, length = 35)
+    private String taxAuthAddress4;
+    @Column(name = "TAXAUTHTELEPHONE", nullable = true, length = 20)
+    private String taxAuthTelephone;
+    @Column(name = "TAXAUTHFAX", nullable = true, length = 15)
+    private String taxAuthFax;
+    @Column(name = "TAXAUTHPHYSICALADDRESS", nullable = true, length = 20)
+    private String taxAuthPhysicalAddress;
+    @Column(name = "TAXAUTHPHYSICALADDRESS1", nullable = true, length = 20)
+    private String taxAuthPhysicalAddress1;
+    @Column(name = "INSBY", nullable = true, length = 20)
+    private String insBy;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "INSDATE")
+    private Date insDate;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "AMMDATE")
+    private Date ammDate;
+    @Column(name = "AMMBY", nullable = true, length = 35)
+    private String ammBy;
+    @Column(name = "MAINBANKACCOUNTNUMBER", nullable = true, length = 15)
+    private String mainAccountnumber;
+    @Column(name = "PENSIONCONTRIBUTION", nullable = true, length = 15)
+    private Double pensionContribution;
+    @Column(name = "ENDOFYEARTAX", nullable = true, length = 12)
+    private String endOfyearTax;
+    @Column(name = "ENDOFYEARPERSSYS", nullable = true, length = 12)
+    private String endOfyearPersSys;
+    @Column(name = "ENDOFYEARLOANSSYS", nullable = true, length = 12)
+    private String endOfyearLoansSys;
+    @Column(name = "ENDOFYEARMEDICALAIDSYS", nullable = true, length = 12)
+    private String endOfyearMedicalAidSys;
+    @Column(name = "ENDOFYEARPENSIONSYS", nullable = true, length = 12)
+    private String endOfyearPensionSys;
+    @Column(name = "ENDOFYEARPAYROLLSYS", nullable = true, length = 12)
+    private String endOfyearPayrollSys;
+    @Column(name = "DEFAULTSALARIESACCOUNT", nullable = true, length = 15)
+    private String defaultSalariesAccountnumber;
+    @Column(name = "DEFAULTEMPLOYEESTATUS", nullable = true, length = 3)
+    private String defaultEmployeeStatus;
+    @Column(name = "PENSIONADMINCHARGE")
+    private Double pensionAdminCharge;
+    @Column(name = "OFFENCEVALIDFOR")
+    private Double offenceValidFor;
+    @Column(name = "PASSFORINSERTNEWEMP", nullable = true, length = 100)
+    private String passInsertNewEmp;
+    @Column(name = "PASSFORDELEMPL", nullable = true, length = 100)
+    private String passForDelEmpl;
+    @Column(name = "PASSFORPAYROLL", nullable = true, length = 100)
+    private String passForPayroll;
+    @Column(name = "PASSFOREOMP", nullable = true, length = 100)
+    private String passForEOMP;
+    @Column(name = "PASSFORCHANGESAL", nullable = true, length = 100)
+    private String passForChangeSal;
+    @Column(name = "PASSFORTAXYEAREND", nullable = true, length = 100)
+    private String passForTaxYearend;
+    @Column(name = "PASSFORPERSYEAREND", nullable = true, length = 100)
+    private String passForPersYearEnd;
+    @Column(name = "PASSFORRESETTRANSHIST", nullable = true, length = 100)
+    private String passForResetTranshist;
+    @Column(name = "TAXRECONFLAG", nullable = true, length = 1)
+    private String taxreconFlag;
+    @Column(name = "PROBATIONPERIOD")
+    private Double probationPeriod;
+    @Column(name = "PAYSLIPMESSAGE", nullable = true, length = 35)
+    private String payslipMessage;
+    @Column(name = "PAYSLIPMESSAGE1", nullable = true, length = 35)
+    private String payslipMessage1;
+    @Column(name = "PAYSLIPMESSAGE2", nullable = true, length = 35)
+    private String payslipMessage2;
+    @Column(name = "PAYSLIPMESSAGE3", nullable = true, length = 35)
+    private String payslipMessage3;
+    @Column(name = "MINIMUMMONTHLYGROSSSALARY")
+    private Double minimumMonthlyGrossSalary;
+    @Column(name = "MINIMUMMONTHLYNETSALARY")
+    private Double minimumMonthlyNetSalary;
+    @Column(name = "ACTIONTAKENNETSALARYLOW", nullable = true, length = 1)
+    private String actionTakenNetsalaryLow;
+    @Column(name = "SALARYFILEENCRYPTIONKEY", nullable = true, length = 35)
+    private String salaryFileEncryptionKey;
+    @Column(name = "TEVETLEVY")
+    private Double tevetLevy;
 
 //@OneToMany(cascade={CascadeType.ALL},targetEntity=Employee.class,mappedBy="company",fetch=FetchType.EAGER)
 //private Collection<Employee> employee;
-
     public Company() {
     }
 
  //   public Collection<Employee> getEmployee() {
- //       return employee;
- //   }
+    //       return employee;
+    //   }
+    //   public void setEmployee(Collection<Employee> employee) {
+    //       this.employee = employee;
+    //   }
 
- //   public void setEmployee(Collection<Employee> employee) {
- //       this.employee = employee;
- //   }
-    
     public String getCompanyId() {
         return companyId;
     }
@@ -361,7 +346,7 @@ private Double tevetLevy;
     public void setCurrentPeriodYear(String currentPeriodYear) {
         this.currentPeriodYear = currentPeriodYear;
     }
-
+    
     public Date getSystemDate() {
         return systemDate;
     }
@@ -666,8 +651,7 @@ private Double tevetLevy;
         this.endOfyearPayrollSys = endOfyearPayrollSys;
     }
 
-
-     public String getDefaultEmployeeStatus() {
+    public String getDefaultEmployeeStatus() {
         return defaultEmployeeStatus;
     }
 
@@ -675,14 +659,13 @@ private Double tevetLevy;
         this.defaultEmployeeStatus = defaultEmployeeStatus;
     }
 
-     public Double getOffenceValidFor() {
+    public Double getOffenceValidFor() {
         return offenceValidFor;
     }
 
     public void setOffenceValidFor(Double offenceValidFor) {
         this.offenceValidFor = offenceValidFor;
     }
-
 
     public String getTaxreconFlag() {
         return taxreconFlag;
@@ -724,7 +707,7 @@ private Double tevetLevy;
         this.payslipMessage3 = payslipMessage3;
     }
 
-     public Double getMinimumMonthlyGrossSalary() {
+    public Double getMinimumMonthlyGrossSalary() {
         return minimumMonthlyGrossSalary;
     }
 
@@ -883,9 +866,6 @@ private Double tevetLevy;
     public void setDivisions(List<Division> divisions) {
         this.divisions = divisions;
     }
-    
-    
-      
 
     @Override
     public int hashCode() {

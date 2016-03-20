@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Input New Appraisal Score</title>
+        <h:outputScript library="js" name="common.js"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+            <h:outputLabel for="compId" value="*Company Id:"/>
+            <h:inputText id ="compId" value="#{companyBean.company.companyId}" title="Enter Company Id" required="true" requiredMessage="Mandatory Field">
+                               <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdValidator" />
+            </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="compId"/>
+            <br/>
+            <h:outputLabel for="compShortname" value="*Short name:"/>
+            <h:inputText id ="compShortname" value="#{companyBean.company.companyShortname}" title="Enter Company shortname" label="companyshortname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="compShortname"/>
+            <br/>
+            <h:outputLabel for="compLongname" value="*Long name:"/>
+            <h:inputText id ="compLongname" value="#{companyBean.company.companyName}" title="Enter Company Long name" label="compLongname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="compLongname"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{companyBean.addCompany()}" 
+                             title="Create Company"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+</html>
