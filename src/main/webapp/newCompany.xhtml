@@ -13,7 +13,8 @@
             <br/>
             <h:outputLabel for="compId" value="*Company Id:"/>
             <h:inputText id ="compId" value="#{companyBean.company.companyId}" title="Enter Company Id" required="true" requiredMessage="Mandatory Field">
-                               <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdValidator" />
+                 <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdPatternValidator" />
+                 <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdValidator" />
             </h:inputText>
             &nbsp; 
             <h:message style="color:red" for="compId"/>

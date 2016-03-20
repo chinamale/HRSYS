@@ -7,9 +7,7 @@ package mw.co.sysassociates.hrsys.jsf;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
