@@ -27,6 +27,7 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(name = "Department.findAllByCompany", query = "SELECT d FROM Department d where d.company = :comp"),
         @NamedQuery(name = "Department.findByCompAndName", query = "SELECT d FROM Department d WHERE d.company = :comp AND d.name = :name"),
         @NamedQuery(name = "Department.findByCompAndCode", query = "SELECT d FROM Department d WHERE d.company = :comp AND d.code = :code"),
+        @NamedQuery(name = "Department.findByCompAndAbbr", query = "SELECT d FROM Department d WHERE d.company = :comp AND d.abbreviation = :abbr"),
     })
     @EntityListeners({DepartmentListener.class})
 public class Department extends BasicFields implements Serializable {
@@ -36,55 +37,17 @@ public class Department extends BasicFields implements Serializable {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;  
-    
-    //@Column(name = "NAME", nullable = true,length = 30)
-    //private String name;
-    
-    //@ManyToOne
-    //    @JoinColumns({
-    //    @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
-    //    @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
-    //})
-    //private Employee employee;
     @ManyToOne
-    @JoinColumn(name = "COMPANY", nullable = true)
+    @JoinColumn(name = "COMPANY", nullable = false)
     private Company company;
-    
-    
-//    @JoinColumn(name = "COMPANY", nullable = false)
-//    private Company company;
-//    @Column(name = "LONGNAME", nullable = true,length = 60)
-//    private String longname;
-//    
-//    @Column(name = "CODE", nullable = true,length = 10)
-//    private String code;
-//    
-//    @Column(name = "NAME", nullable = true,length = 30)
-//    private String name;
-//    
-//    @Column(name = "ABBREVIATION", nullable = true,length = 30)
-//    private String abbreviation;
-//    
-//    @Column(name = "LOCATION", nullable = true,length = 30)
-//    private String location;
-//
-//    @Column(name = "ADDRESS1", nullable = true,length = 30)
-//    private String address1;
-//    
-//    @Column(name = "ADDRESS2", nullable = true,length = 30)
-//    private String address2;
-//    
-//    @Column(name = "ADDRESS3", nullable = true,length = 30)
-//    private String address3;
-//    
-//    @Column(name = "ADDRESS4", nullable = true,length = 30)
-//    private String address4;
-//    
-//    @Column(name = "TELEPHONE", nullable = true,length = 30)
-//    private String telephone;
-//    
-//    @Column(name = "EMAILADDRESS", nullable = true,length = 30)
-//    private String emailaddress;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Company getCompany() {
         return company;

@@ -100,15 +100,9 @@ public class CompanyService implements ICompany {
     
     @Override
     public int insertCompany(Company company) throws EntityExistsException {
-       //userTransaction.begin();
-       // Company comp = em.find(Company.class, companyno);
-       // if (comp == null) {
+
             em.persist(company);
             return 1;
-       // } else {
-       //     throw new EntityExistsException("A Company with ID : " + companyno + " already exists");
-        //}
-
     }
     
 
@@ -143,15 +137,11 @@ return comp;
     }
     @Override
     public Company findCompanyByAbbrev(String compAbbr) throws EntityNotFoundException {
-        //System.out.println("AdminEJB----Searching for user:" + loginname);
+
         List<Company> elementList = em.createNamedQuery("Company.findByAbbreviation").setParameter("abbrev", compAbbr).getResultList();
-        // Collection listOfActivities = elementList.get(0).getActivity();
+
         return elementList.isEmpty() ? null : elementList.get(0);
-//                if (elementList.isEmpty()) {
-//            throw new EntityNotFoundException("A Company with abbreviation : " + compAbbr + " does not exists");
-//        } else {
-//            return elementList.get(0);
-//        }
+
     }
 
     @Override

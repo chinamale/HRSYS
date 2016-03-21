@@ -5,10 +5,24 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Input New Appraisal Score</title>
+        <h:outputStylesheet library="js/jquery-ui-1.11.4.custom" name="jquery-ui.css"></h:outputStylesheet>
+        <h:outputStylesheet library="js/jquery-ui-1.11.4.custom" name="jquery-ui.structure.css"></h:outputStylesheet>
+        <h:outputStylesheet library="js/jquery-ui-1.11.4.custom" name="jquery-ui.theme.css"></h:outputStylesheet>   
+        <h:outputScript library="js/jquery-ui-1.11.4.custom" name="jquery-ui.min.js"/>
         <h:outputScript library="js" name="common.js"/>
+        <script type="text/javascript">
+            var map = null;
+            function init() {
+            
+            }
+            $(document).ready(function(){
+                $(".date").datepicker({dateFormat:'yy-mm-dd'});
+            });
+        </script>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="newcompany">
+            
             Fill in the details and press the register button.
             <br/>
             <h:outputLabel for="compId" value="*Company Id:"/>
@@ -16,7 +30,8 @@
                  <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdPatternValidator" />
                  <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdValidator" />
             </h:inputText>
-            &nbsp; 
+            &nbsp;
+
             <h:message style="color:red" for="compId"/>
             <br/>
             <h:outputLabel for="compShortname" value="*Short name:"/>
