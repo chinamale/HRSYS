@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name="language" content="English" />
+		<meta name="google-signin-clientid" content="838352731945-c1kb6tuhourisk1jv8gk1bi4bska8ms6.apps.googleusercontent.com" />
+		<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+		<meta name="google-signin-scope" content="email profile" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		<title>Takipi  -  Detect and fix production errors</title>
+		<link rel="stylesheet" media="screen" href="./assets/stylesheets/main.min.css" />
+		<!--<link rel="stylesheet" media="screen" href="/assets/stylesheets/takipiMiniSignup.css" />-->
+		
+		
+		
+			<!-- Sentry start -->
+			<!-- Sentry end -->		
+		
+
+
+		<link rel="stylesheet" href="/assets/stylesheets/indexnew.css">
+<link rel="stylesheet" type="text/css" href="./assets/stylesheets/font-awesome.min.css" media="screen">
+<link rel="stylesheet" media="screen" href="./assets/stylesheets/bluesite/bluesite-all.min.css"/>
+<!-- Windows don't handle css concatenation
+<link rel="stylesheet" media="screen" href="/assets/stylesheets/bluesite/jquery.fancybox.css"/> 
+<link rel="stylesheet" media="screen" href="/assets/stylesheets/bluesite/bluesite.css"/> -->
+
+
+
+		
+	</head>
+	<body onunload="" class="responsive">
+		
+<div id="wrapper" >
+	
+<div id="header" class=" sticky">
+	<div class="navigationHolder">
+    
+		<div class="userHolder">
+			<a id="navigation-create-accoun" href="https://app.takipi.com/?signup" class="signup navBtn">Sign up</a>
+			<a id="navigation-login" href="https://app.takipi.com" class="login navText">Login</a>
+		</div>
+    
+		<a class="takipilogo" href="/">Takipi</a>
+    
+		<ul id="nav">
+		    <li class="mobile-only mobile-toggler"><a href="#"></a></li><!--
+			<li><a id="navigation-product" href="/product" class="underlinelink">Product</a></li>
+			<li><a id="navigation-how-it-works" href="/how-it-works" class="underlinelink">How it Works</a></li>
+
+			<li><a id="navigation-solution" href="/why-takipi" class="underlinelink">Why Takipi</a></li>
+			
+			<!--
+			<li class="with-sub mobile-hidden">
+		    	<a id="navigation-solution" href="/why-takipi#developer" class="underlinelink">Solutions</a>
+			    <ul class="sub-menu">
+			        <li>
+			            <span class="navigation-section">Role</span>
+			            <ul>
+			                <li><a id="navigation-why-takipi-developer" href="/why-takipi#developer">Developer</a></li>
+			                <li><a id="navigation-why-takipi-devops" href="/why-takipi#devops">Devops</a></li>
+			                <li><a id="navigation-why-takipi-engineering-manager" href="/why-takipi#engineering-manager">Engineering Manager</a></li>
+			                <li><a id="navigation-why-takipi-executive" href="/why-takipi#executive">Executive</a></li>
+			            </ul>
+			         </li>
+			        <li>
+			            <span class="navigation-section">Technology</span>
+			            <ul>
+			                <li><a href="/scala">Scala</a></li>
+			                <li><a href="/newrelic">New Relic</a></li>
+			            </ul>
+			         </li>
+			    </ul>
+			</li>
+			--><!--
+			<li><a id="navigation-pricing" href="/pricing" class="underlinelink">Pricing</a></li>
+			<li class="with-sub">
+                <a id="navigation-company" href="/about" class="underlinelink">Company</a>
+			    <ul class="sub-menu">
+			        <li><a id="navigation-about" href="/about" class="underlinelink">About Us</a></li>
+			        <li><a id="navigation-jobs" href="/jobs" class="underlinelink">Jobs</a></li>
+                    <li><a id="navigation-blog" href="http://blog.takipi.com" class="underlinelink" target="_blank">Blog</a></li>
+                    <li><a id="navigation-monsters" href="/monsters" class="underlinelink">Monsters</a></li>
+			    </ul>
+			</li>
+            <li><a id="navigation-support" href="http://docs.takipi.com" class="underlinelink">Docs</a></li>-->
+		</ul>
+    
+	</div>
+</div>
+
+	<div id="blueSiteIndexMain">
+	<section class="promo-block">
+		<div class="slimSiteCentered">
+			<div class="descr">
+				<h1>Welcome to HRSYS </h1>
+				<p>The ultimate human resource and self sercive portal</p>
+				<div class="start-form takipiMiniSignupForm" createdin="header">
+					<form action="#">		
+					<a id="navigation-create-accoun" href="https://app.takipi.com/?signup" class="signup navBtn">Sign up</a>
+					<a id="navigation-login" href="https://app.takipi.com" class="login navText">Login</a>
+
+						<!--<input class="text emailInput" type="email" placeholder="Email address">
+						<input class="btn-submit createStubAccountBtn" type="submit" value="Start using Takipi">-->
+						<!--<div class="errorLabel">User already exists <a class="loginLink" href="https://app.takipi.com/login.html">Log in</a></div>
+						<div class="socialLogins">
+								<div class="socialButtonsText">Or signup with</div>
+								<a id="googleSigninBtn" class="socialBtn google" href="javascript: void(0)">
+									<span class="icon fa fa-google-plus"></span>
+								</a>
+								<a id="githubSigninBtn" class="socialBtn github" href="javascript: void(0)">
+									<span class="icon fa fa-github"></span>
+								</a>
+						</div>
+                        <div class="supported-language">Supports all JVM languages</div>-->
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--
+		<img class="alignright monster-fred mobile-hidden" src="assets/images/bluesite/Fred--main-site_.gif" alt="image">
+		<div class="tale monster mobile-only"></div>
+		!-->
+	<!--</section><!-- /promo-block -->
+    <!--<section class="see-how-works">
+        <div class="how-works">See how Takipi works - <a href="https://demo.takipi.com/">Try the demo app &gt;&gt;</a></div>
+    </section>
+	<section class="production-info">
+		<div class="slimSiteCentered">
+			<div class="headline">
+				<h2 class="marked">FIX ISSUES IN MINUTES</h2>
+				<p>Track all log errors and exceptions in production JVMs.<br>See the complete code and variable state behind each error.</p>
+			</div>
+			<div class="mobile-only tale">
+			    <img src="/assets/images/bluesite/mobile-production-info-tale.png" alt="image" width="480"/>
+			</div>
+			<div class="production-area mobile-hidden">
+				<div class="col-left">
+					<div class="history-box">
+						<strong class="ttl">NullPointerException</strong>
+						<p>CampaignBuilder.selectPublisher</p>
+						<ul class="list">
+							<li><img src="assets/images/bluesite/ico01.png" alt="image">First seen Dec 17</li>
+							<li><img src="assets/images/bluesite/ico02.png" alt="image">26 times</li>
+						</ul>
+						<div class="error-block">
+							<a class="select open-link" href="#">
+								<ul class="num">
+									<li class="num-01">4</li>
+									<li class="num-02">2</li>
+								</ul>
+								<span class="text">Dec 18, 11:32 am</span>
+							</a>
+							<ul class="error-list">
+								<li><a href="#"><em class="date">Dec 18, 11:33 am</em><span class="txt">na.dallas.dc02.campaign-builder-02</span></a></li>
+								<li><a href="#"><em class="date">Dec 18, 11:32 am</em><span class="txt">na.dallas.dc01.campaign-builder-02</span></a></li>
+								<li><a href="#"><em class="date">Dec 17, 3:11 pm</em><span class="txt">na.dallas.dc01.campaign-builder-02</span></a></li>
+								<li><a href="#"><em class="date">Dec 17, 11:33 am</em><span class="txt">na.boston.dc01.campaign-builder-02</span></a></li>
+								<li><a href="#"><em class="date">Dec 17, 11:33 am</em><span class="txt">na.boston.dc01.campaign-builder-02</span></a></li>
+							</ul>
+							<div class="info-link info-link-01">
+								<a href="#">Error Snapshots</a>
+								<div class="box">
+									<p>See multiple instances of each error from different machines.</p>
+								</div>
+								<a href="#" class="hotspot"></a>
+							</div>
+						</div><!-- / error-block -->
+		<!--			</div><!-- / history-box -->
+			<!--		<ul class="nav-list">
+						<li class="style-05">CampaignBuilder.selectPublisher</li>
+						<li class="style-05">CampaignBuilder.buildCampaign</li>
+						<li class="style-05">CampaignServlet.doGet</li>
+						<li class="style-01 style-05">
+							<a class="open-link" href="#">na.dallas.dc01.campaign-builder-02</a>
+							<div class="info-link info-link-02">
+								<a href="#">Transactions</a>
+								<div class="box">
+									<p>See call stacks across services, with code and variables for each JVM.</p>
+								</div>
+								<a href="#" class="hotspot"></a>
+							</div>
+						</li>
+						<li class="style-04 color-02">BidRequestTask.execute</li>
+						<li class="style-04 color-02">TaskExecutor.execute</li>
+						<li class="style-02 style-04 color-02">
+							<a class="open-link" href="#">QueueTasksFetcher.run</a>
+							<div class="info-link info-link-03">
+								<a href="#">Reproduce errors</a>
+								<div class="box">
+									<p>See the values passed into your code in production to reproduce locally.</p>
+								</div>
+								<a href="#" class="hotspot"></a>
+							</div>
+						</li>
+						<li class="style-03 style-04 color-02">na.california.dc02.ad-bidder-11</li>
+					</ul><!-- / nav-list -->
+<!--				</div><!-- / col-left -->
+	<!--			<div class="col-right">
+					<div class="wrap-01">
+						<div class="info-holder">
+							<strong class="subtitle">CampaignBuilder.selectPublisher </strong>
+							<div class="code-block">
+								<span class="line"><span class="color-1">private</span> Publisher selectPublisher(List<span class="color-1">&lt;</span>Publisher<span class="color-1">&gt;</span>
+								<span class="info-block">
+									<a class="link" href="#">publishers</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">0</span><span class="right">AdPublisher</span></span>
+										<span class="list-item"><span class="left">1</span><span class="right">BidPublisher</span></span>
+									</span>
+								</span>
+								) {</span><!-- / line -->
+		<!--						<span class="line"><span class="spaces spaces-01"></span><span class="color-1">for</span> (Publisher &nbsp;
+								<span class="info-block info-block-07">
+									<a class="link" href="#">publisher</a>
+									<span class="holder">
+										<strong class="sub-head">publisher</strong>
+										<span class="list-item"><span class="left">minPrice</span><span class="right">0.2</span></span>
+										<span class="list-item"><span class="left">maxPrice</span><span class="right">0.7</span></span>
+										<span class="list-item">...</span>
+									</span>
+								</span>
+								<span class="color-1">:</span> 
+								<span class="info-block">
+									<a class="link" href="#">publishers</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">0</span><span class="right">AdPublisher</span></span>
+										<span class="list-item"><span class="left">1</span><span class="right">BidPublisher</span></span>
+									</span>
+								</span>
+								) {</span><!-- / line -->
+			<!--					<span class="line"><span class="spaces spaces-02"></span><span class="color-1">double</span>
+								<span class="info-block info-block-02">
+									<a class="link" href="#">allowance</a>
+									<span class="holder">0.8</span>
+								</span>
+								<span class="color-1">=</span>
+								<span class="info-block">
+									<a class="link" href="#">publisher</a>
+									<span class="holder">
+										<strong class="sub-head">publisher</strong>
+										<span class="list-item"><span class="left">minPrice</span><span class="right">0.2</span></span>
+										<span class="list-item"><span class="left">maxPrice</span><span class="right">0.7</span></span>
+										<span class="list-item">...</span>
+									</span>
+								</span>
+								<span class="color-1">.</span>getAllowance();</span><!-- / line -->
+			<!--					<span class="line"></span><!-- / line -->
+				<!--				<span class="line highlight flame"><span class="spaces spaces-02"></span><span class="color-1">if</span>
+								((<span class="info-block info-block-02">
+									<a class="link" href="#">bidPrice</a>
+									<span class="holder">null</span>
+								</span>
+								<span class="color-1">.</span>minimum() <span class="color-1">&gt;=</span>
+								<span class="var">
+									<a class="link open-link" href="#">allowance</a>
+									<span class="var-holder">
+										<span class="right">0.8</span>
+									</span>
+									<span class="info-link info-link-04">
+										<a href="#">See code and state</a>
+										<span class="box">from the production JVM at the moment of error.</span>
+										<a href="#" class="hotspot"></a>
+									</span>
+								</span>
+								) <span class="color-1">&amp;&amp;</span></span><!-- / line -->
+				<!--				<span class="line"><span class="spaces spaces-03"></span>
+								(<span class="info-block info-block-02">
+									<a class="link" href="#">bidPrice</a>
+									<span class="holder">null</span>
+								</span>
+								<span class="color-1">.</span>maximum() <span class="color-1">&lt;=</span>
+								<span class="info-block info-block-02">
+									<a class="link" href="#">allowance</a>
+									<span class="holder">0.8</span>
+								</span>
+								)) {</span><!-- / line -->
+					<!--			<span class="line"><span class="spaces spaces-03"></span><span class="color-1">return</span>
+								<span class="info-block info-block-07">
+									<a class="link" href="#">publisher</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">minPrice</span><span class="right">0.2</span></span>
+										<span class="list-item"><span class="left">maxPrice</span><span class="right">0.7</span></span>
+									</span>
+								</span>;
+								</span><!-- / line -->
+						<!--		<span class="line"><span class="spaces spaces-02"></span>}</span><!-- / line -->
+						<!--		<span class="line"><span class="spaces spaces-01"></span>}</span><!-- / line -->
+					<!--			<div class="values">
+									<a class="sub-head open-link" href="#">Recorded variables</a>
+									<ul class="list">
+										<li class="caret">
+											<a href="#">
+												<span class="left">this</span>
+												<span class="right">CampaignB...</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#">
+														<span class="left">bidPrice</span>
+														<span class="right">null</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="left">transactionId</span>
+														<span class="right">"WEsdkjcv2...</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="left">hostId</span>
+														<span class="right">"127.0.0.1"</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="left">allowance</span>
+												<span class="right">0.8</span>
+											</a>
+										</li>
+										<li class="caret">
+											<a href="#">
+												<span class="left">publisher</span>
+												<span class="right">Publisher</span>
+											</a>
+											<ul class="drop-open">
+												<li>
+													<a href="#">
+														<span class="left">minPrice</span>
+														<span class="right">0.2</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="left">maxPrice</span>
+														<span class="right">0.7</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="left">currency</span>
+														<span class="right">$ (USD)</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="left">name</span>
+														<span class="right">"P&amp;G"</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+									<div class="info-link info-link-05">
+										<a href="#">See object values</a>
+										<div class="box">
+											<p>across the entire call stack, 5 levels into the heap.</p>
+										</div>
+										<a href="#" class="hotspot"></a>
+									</div>
+								</div><!-- / values -->
+			<!--				</div><!-- / code-block -->
+				<!--		</div><!-- / info-holder -->
+					<!--<div class="info-holder">
+							<strong class="subtitle">CampaignBuilder.buildCampaign</strong>
+							<div class="code-block">
+								<span class="line"><span class="spaces spaces-01"></span><span class="color-1">public</span> JSONObject buildCampaign() {</span><!-- / line -->
+<!--								<span class="line"><span class="spaces spaces-05"></span>List<span class="color-1">&lt;</span>Publisher<span class="color-1">&gt;</span>
+								<span class="info-block">
+									<a class="link" href="#">publishers</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">0</span><span class="right">AdPublisher</span></span>
+										<span class="list-item"><span class="left">1</span><span class="right">BidPublisher</span></span>
+									</span>
+								</span>
+								<span class="color-1">=</span> fetchLivePublishers();</span><!-- / line -->
+	<!--							<span class="line"></span>
+								<span class="line"><span class="spaces spaces-05"></span>Collections<span class="color-1">.</span>shuffle(
+								<span class="info-block">
+									<a class="link" href="#">publishers</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">0</span><span class="right">AdPublisher</span></span>
+										<span class="list-item"><span class="left">1</span><span class="right">BidPublisher</span></span>
+									</span>
+								</span>);
+								</span><!-- / line -->
+		<!--						<span class="line highlight"><span class="spaces spaces-05"></span>Publisher candidate <span class="color-1">=</span>
+								selectPublisher(<span class="info-block">
+									<a class="link" href="#">publishers</a>
+									<span class="holder">
+										<strong class="sub-head">publishers</strong>
+										<span class="list-item"><span class="left">0</span><span class="right">AdPublisher</span></span>
+										<span class="list-item"><span class="left">1</span><span class="right">BidPublisher</span></span>
+									</span>
+								</span>);
+								</span><!-- / line -->
+			<!--					<span class="line"><span class="spaces spaces-05"></span>Campaign campaign <span class="color-1">=</span> internalCreateCamapain(candidate);</span><!-- / line -->
+		<!--						<span class="line"></span><!-- / line -->
+			<!--					<span class="line"><span class="spaces spaces-05"></span><span class="color-1">return</span> campaign.toJson();</span><!-- / line -->
+		<!--						<span class="line"><span class="spaces spaces-01"></span>}</span>
+							</div><!-- / code-block -->
+		<!--				</div><!-- / info-holder -->
+		<!--				<div class="info-holder">
+							<strong class="subtitle">CampaignServlet.doGet</strong>
+							<div class="code-block">
+								<span class="line"><span class="color-1">protected void</span> doGet(HttpServletRequest
+								<span class="info-block info-block-03">
+									<a class="link" href="#">req</a>
+									<span class="holder">
+										<strong class="sub-head">req</strong>
+										<span class="list-item"><span class="left">inputStream</span><span class="right">InputStream</span></span>
+										<span class="list-item">..</span>
+									</span>
+								</span>
+								, HttpServletResponse
+								<span class="info-block info-block-04">
+									<a class="link" href="#">resp</a>
+									<span class="holder">
+										<strong class="sub-head">resp</strong>
+										<span class="list-item"><span class="left">outputStream</span><span class="right">outputStream</span></span>
+										<span class="list-item"><span class="left">status</span><span class="right">0</span></span>
+									</span>
+								</span>
+								) <span class="color-1">throws</span> ServletException, IOException</span><!-- / line -->
+		<!--						<span class="line">{</span><!-- / line -->
+			<!--					<span class="line"><span class="spaces spaces-01"></span>String
+								<span class="info-block info-block-05">
+									<a class="link" href="#">transactionId</a>
+									<span class="holder">TRAN-2015-X4k12s</span>
+								</span>
+								<span class="color-1">=</span>
+								<span class="info-block info-block-03">
+									<a class="link" href="#">req</a>
+									<span class="holder">
+										<strong class="sub-head">req</strong>
+										<span class="list-item"><span class="left">inputStream</span><span class="right">InputStream</span></span>
+										<span class="list-item">..</span>
+									</span>
+								</span>
+								<span class="color-1">.</span>getParameter(<span class="color-2">"transactionId"</span>);</span><!-- / line -->
+			<!--					<span class="line"><span class="spaces spaces-01"></span>String
+								<span class="info-block info-block-06">
+									<a class="link" href="#">hostIp</a>
+									<span class="holder">192.117.10.29</span>
+								</span>
+								<span class="color-1">=</span>
+								<span class="info-block info-block-03">
+									<a class="link" href="#">req</a>
+									<span class="holder">
+										<strong class="sub-head">req</strong>
+										<span class="list-item"><span class="left">inputStream</span><span class="right">InputStream</span></span>
+										<span class="list-item">..</span>
+									</span>
+								</span>
+								<span class="color-1">.</span>getHeader(<span class="color-2">"X-Forwarded-For"</span>);</span><!-- / line -->
+	<!--						</div><!-- / code-block -->
+		<!--				</div><!-- / info-holder -->
+			<!--<!--	<div class="wrap-02">
+						<div class="inner">
+							<div class="info-holder">
+								<strong class="subtitle">BidRequestTask.execute</strong>
+								<div class="code-block">
+									<span class="line"><span class="color-1">public static void</span> execute() &#123;</span>
+									<span class="line"><span class="spaces spaces-01"></span><span class="color-1">try</span> &#123;</span><!-- / line -->
+					<!--				<span class="line highlight"><span class="spaces spaces-02"></span>InputStream
+									<span class="info-block">
+										<a class="link" href="#">is</a>
+										<span class="holder">
+											<strong class="sub-head">is</strong>
+											<span class="list-item"><span class="left">length</span><span class="right">2048</span></span>
+											<span class="list-item"><span class="left">buffer</span><span class="right">byte[]</span></span>
+										</span>
+									</span>
+									<span class="color-1">=</span>connection
+									<span class="color-1">.</span>getInputStream();</span><!-- / line -->
+						<!--			<span class="line"><span class="spaces spaces-02"></span>parseResponse(
+									<span class="info-block">
+										<a class="link" href="#">is</a>
+
+-->	
+	
+
+<div id="footer"  >
+	
+<!--	<div class="footerHolder slimSiteCentered">
+		<div class="footerController">
+			<div class="blocksHolder">
+				<div class="block mobile-hidden">
+					<h3>Product</h3>
+					<ul>
+						<li><a id="footer-product-how-it-works" class="underlinelink" href="/how-it-works">How it Works</a></li>
+						<li><a id="footer-product-product-error-analysis" class="underlinelink" href="/product#error-analysis">Error Analysis</a></li>
+						<li><a id="footer-product-product-detection-priority" class="underlinelink" href="/product#engineering-dashboard">Detection and priority</a></li>
+						<li><a id="footer-product-product-workflow-integration" class="underlinelink" href="/product#workflow">Workflow Integration</a></li>
+						<li><a id="footer-product-logs" class="underlinelink" href="/product#smarter-logs">Smarter Logs</a></li>
+						<li><a id="footer-product-security" class="underlinelink" href="/security">Security</a></li>
+						<li><a id="footer-product-features-performance" class="underlinelink" href="/how-it-works#performance">Performance</a></li>
+					</ul>
+				</div>
+				<div class="block mobile-hidden">
+					<h3>Solutions</h3>
+					<ul>
+						<li><a id="footer-solutions-role-developer" class="underlinelink" href="/why-takipi">Why Takipi</a></li>
+						<!--
+						<li><a id="footer-solutions-role-devops" class="underlinelink" href="/why-takipi#devops">DevOps</a></li>
+						<li><a id="footer-solutions-role-engineering-manager" class="underlinelink" href="/why-takipi#engineering-manager">Engineering Manager</a></li>
+						<li><a id="footer-solutions-role-executive" class="underlinelink" href="/why-takipi#executive">Executive</a></li>
+						
+						<li><a id="footer-solutions-technology-scala" class="underlinelink" href="/scala">Scala</a></li>
+						<li><a id="footer-solutions-technology-newrelic" class="underlinelink" href="/newrelic">New Relic</a></li>
+					</ul>
+				</div>
+				<div class="block mobile-hidden">
+					<h3>Company</h3>
+					<ul>
+						<li><a id="footer-company-aboutus" class="underlinelink" href="/about">About Us</a></li>
+						<li><a id="footer-company-jobs" class="underlinelink" href="/jobs">Jobs</a></li>
+						<li><a id="footer-company-blog" class="underlinelink" href="http://blog.takipi.com" target="_blank">Blog</a></li>
+						<li><a id="footer-company-monsters" class="underlinelink" href="/monsters">Monsters</a></li>
+					</ul>
+				</div>
+				<div class="block mobile-hidden">
+					<h3>Help</h3>
+					<ul>
+						<li><a id="footer-help-docs" class="underlinelink" href="http://docs.takipi.com" target="_blank">Docs</a></li>
+						<li><a id="footer-help-installation" class="underlinelink" href="http://docs.takipi.com/installation" target="_blank">Installation</a></li>
+						<li><a id="footer-help-connecting-tapiki" class="underlinelink" href="http://docs.takipi.com/connecting-takipi" target="_blank">Connecting Takipi</a></li>
+						<li><a id="footer-help-schedule-demo" class="underlinelink" href="/schedule-demo">Schedule a demo</a></li>
+						<li><a id="footer-help-mail" class="underlinelink" href="mailto:hello@takipi.com">hello@takipi.com</a></li>
+						<li><a id="footer-help-tos" class="underlinelink" href="/terms" target="_blank">Terms of service</a></li>
+					</ul>
+				</div>
+                <div class="mobile-only mobile-footer">
+                    <a href="/product" class="underlinelink">Product</a>
+                    <a href="/about" class="underlinelink">Company</a>
+                    <a href="/how-it-works" class="underlinelink">How it works</a>
+                    <a href="/pricing" class="underlinelink">Pricing</a>
+                    <a href="http://docs.takipi.com" target="_blank" class="underlinelink">Docs</a>
+                    <a class="placeholder">&nbsp;</a>
+                </div>
+				<div class="block">
+					<h3 class="mobile-hidden">Who said developers aren't social?</h3>
+					<ul class="socialList">
+						<li><a id="footer-social-facebook" href="http://www.facebook.com/takipi" class="facebook" target="_blank"></a></li>
+						<li><a id="footer-social-twitter" href="http://www.twitter.com/takipid" class="twitter" target="_blank"></a></li>
+						<li><a id="footer-social-dog" href="javascript: void(0)" class="dog"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>-->
+    
+	<div class="footerBottom">
+		<ul>
+			<li>By sysassociates, Inc. 2015</li>
+			<li>Contact us: <a class="underlinelink" href="mailto:hello@takipi.com">hello@takipi.com</a></li>
+			<li>+265 888 88 888 888</li>
+		</ul>
+	</div>
+</div>
+<div id="dogPopup" class="socialPopup">
+	<a class="socialPopupClose" href="javascript: void(0)"></a>
+	<div class="socialPopupHolder">
+		<div class="socialPopupHeader"></div>
+		<img src="/assets/images/takipi-dogs.jpg" alt="Taki and Kipi" width="476" height="315"/>
+	</div>
+</div>
+<div id="youtubePopup">
+	<iframe id="ytPlayer" width="640" height="420" src="//www.youtube.com/embed/a-4ftQsoZas?vq=hd720&enablejsapi=1&origin=https://www.takipi.com" frameborder="0" allowfullscreen></iframe>
+</div>
+<div id="screenshotsPopup">
+	<a class="close" href="javascript: void(0)"></a>
+</div>
+<div id="officeImagePopup">
+	<a class="close" href="javascript: void(0)"></a>
+</div>
+
+</div>
+
+		
+			<!-- Adroll start -->
+			<!-- Adroll end -->
+			<!-- Mouseflow start -->
+			<!-- Mouseflow end -->
+			
+			<!--RETARGETING-->
+			<!-- Google Code for Takipi Visitors -->
+			<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+           <!-- facebook retargeting -->
+            <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l5zwt&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
+            <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l5zwt&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" /></noscript>
+            <!-- Google Code for Remarketing tag -->
+            <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+		
+	
+	</body>
+</html>
