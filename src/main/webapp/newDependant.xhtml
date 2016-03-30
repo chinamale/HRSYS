@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+    <h:head>
+        <title>Input New Dependant Details</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+            <h:outputLabel for="Code" value="*Employee Number:"/>
+            <h:inputText id ="employeeNo" value="#{newDependantBean.employee}" title="Enter Employee Number" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="employeeNo"/>
+            <br/>
+            <h:outputLabel for="firstname" value="*Firstname:"/>
+            <h:inputText id ="firstname" value="#{newDependantBean.firstname}" title="Enter Firstname" label="firstname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="firstname"/>
+            <br/>
+            <h:outputLabel for="surname" value="*Surname:"/>
+            <h:inputText id ="Surname" value="#{newDependantBean.surname}" title="Enter Surname" label="surname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="surname"/>
+            <br/>
+            <h:outputLabel for="dateofbirth" value="*Date of birth: "/>
+            <h:inputText id ="dateofbirth" value="#{newDependantBean.dateofbirth}" title="Enter date of birth" label="dateofbirth" required="true" requiredMessage="Mandatory Field">
+                <f:convertDateTime pattern="dd-MM-yyyy" />
+             </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="dateofbirth"/>
+            <br/>
+            <h:outputLabel for="rlship" value="*Relationship: "/>
+            <h:inputText id ="rlship" value="#{newDependantBean.rlship}" title="Enter Relationship" label="rlship" required="true" requiredMessage="Mandatory Field">
+             </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="rlship"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{newDependantBean.addDependant()}" title="Add new Dependant"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+    </f:view>
+</html>
+

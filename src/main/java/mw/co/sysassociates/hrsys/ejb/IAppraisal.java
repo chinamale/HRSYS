@@ -5,13 +5,14 @@
  */
 package mw.co.sysassociates.hrsys.ejb;
 
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
  *
- * @author Madalitso Chinamale
+ * @author Clifton T. Mtengezo
  */
 @Local
-public interface IUserService {
-void registerUser(String  username, String surname, String firstname, String role, String userpassword);
+public interface IAppraisal {
+int inputAppraisal(String emplono, String company, Date appra_date, String appr_quarter, String appr_period, String appra_score);    
 }

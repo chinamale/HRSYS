@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Causes</title>
+    </h:head>
+    <h:body>
+        Title : <h:outputText id="abbrv" title="Abbreviation" value="#{newEmployeeBean.title}"/>
+        <br/>
+        First name: <h:outputText id="name" title="Date of Visit" value="#{newEmployeeBean.firstname}"/>
+        <br/>
+        Surname: <h:outputText id="address" title="Address" value="#{newEmployeeBean.company}"/>
+        <br/>
+<!-- 
+        <h:dataTable value="#{newEmployeeBean.employeeSrv.getEmployeeLeaveDetails(employee)}" var="d">
+            <h:column>    				
+                <f:facet name="header">Cause Name</f:facet>    				
+                    #{d.leavetype}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Activity Description</f:facet>
+                    #{d.noofdays}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Amount</f:facet>
+                    #{d.datefrom}
+            </h:column>
+           
+            <h:column>
+                <f:facet name="header">Fundraiser</f:facet>
+                    #{d.activity.individual.surname} #{d.activity.individual.firname}
+            </h:column>
+        </h:dataTable>-->
+        <h:button id="alt_back_button" title="Go Back" value="Go Back" outcome="index"/>
+    </h:body>
+</html>

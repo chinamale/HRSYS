@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>User Registration</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+            <h:outputLabel for="employeeNo" value="*Employee Number:"/>
+            <h:inputText id ="employeeNo" value="#{newEmployeeBean.employeeNo}" title="Enter Employee Number" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="employeeNo"/>
+            <br/>
+            <h:outputLabel for="firstname" value="*First name:"/>
+            <h:inputText id ="firstname" value="#{newEmployeeBean.firstname}" title="Enter firstname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="firstname"/>
+            <br/>
+            <h:outputLabel for="surname" value="*Surname:"/>
+            <h:inputText id ="surname" value="#{newEmployeeBean.surname}" title="Enter surname" label="surname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="surname"/>
+            <br/>
+            <h:outputLabel for="gender" value="*Gender: "/>
+            <h:inputText id ="gender" value="#{newEmployeeBean.sex}" title="Enter Sex" required="true" label="Gender" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="Gender"/>
+            <br/>
+            <h:outputLabel for="title" value="*Title"/>
+            <h:inputText id ="title" value="#{newEmployeeBean.title}" title="Enter title" label="title" required="true"  requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="title"/>
+            <br/>
+            <h:outputLabel for="division" value="*Division"/>
+            <h:inputText id ="division" value="#{newEmployeeBean.division}" title="Enter Division" label="division" required="true"  requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="division"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{newEmployeeBean.register()}" title="Create New Employee"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+</html>

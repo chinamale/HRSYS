@@ -13,12 +13,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import mw.co.sysassociates.hrsys.ejb.IUserService;
-import mw.co.sysassociates.hrsys.ejb.UserService;
 
-/**
- *
- * @author parisis
- */
 @Named
 @RequestScoped
 public class RegistrationBean {

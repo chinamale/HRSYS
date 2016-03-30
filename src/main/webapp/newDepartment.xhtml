@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Input New Department</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            <br/>
+<!--            <h:outputLabel for="companyid" value="*Company Id:"/>
+            <h:inputText id ="companyid" value="#{departmentBean.department.company.companyId}" title="companyid" required="true" requiredMessage="Mandatory Field">
+                <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.CompanyIdPatternValidator" />
+            </h:inputText>-->
+            &nbsp; 
+            <h:message style="color:red" for="companyid"/>
+            <br/>
+            <h:outputLabel for="code" value="*Department Code:"/>
+            <h:inputText id ="code" value="#{departmentBean.department.code}" title="code" required="true" requiredMessage="Mandatory Field">
+             <f:validator validatorId="mw.co.sysassociates.hrsys.jsf.DepartmentCodeValidator" />
+            </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="code"/>
+            <br/>
+            <h:outputLabel for="abbreviation" value="*Abbreviation:"/>
+            <h:inputText id ="abbreviation" value="#{departmentBean.department.abbreviation}" title="Enter Abbreviation" label="abbreviation" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="abbreviation"/>
+            <br/>
+            <h:outputLabel for="shortname" value="*Short name:"/>
+            <h:inputText id ="shortname" value="#{departmentBean.department.name}" title="Enter shortname" label="shortname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="shortname"/>
+            <br/>
+            <h:outputLabel for="longname" value="*Longname: "/>
+            <h:inputText id ="longname" value="#{departmentBean.department.longname}" title="Enter Long name" label="longname" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="longname"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Save Details" action="#{departmentBean.addDepartment()}" title="Create New Appraisal Score"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+    </h:body>
+</html>

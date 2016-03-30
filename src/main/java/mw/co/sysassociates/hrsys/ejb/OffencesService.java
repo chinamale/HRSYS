@@ -5,13 +5,10 @@
  */
 package mw.co.sysassociates.hrsys.ejb;
 
-import javax.ejb.Local;
-
 /**
  *
- * @author Madalitso Chinamale
+ * @author Clifton T. Mtengezo
  */
-@Local
-public interface IUserService {
-void registerUser(String  username, String surname, String firstname, String role, String userpassword);
+public class OffencesService {
+    
 }

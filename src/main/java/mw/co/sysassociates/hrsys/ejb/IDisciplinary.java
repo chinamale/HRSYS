@@ -6,12 +6,13 @@
 package mw.co.sysassociates.hrsys.ejb;
 
 import javax.ejb.Local;
+import mw.co.sysassociates.hrsys.entity.Disciplinary;
 
 /**
  *
- * @author Madalitso Chinamale
+ * @author Clifton T. Mtengezo
  */
 @Local
-public interface IUserService {
-void registerUser(String  username, String surname, String firstname, String role, String userpassword);
+public interface IDisciplinary {
+    public int insertDisciplinaryCase(Disciplinary disciplinary);
 }
