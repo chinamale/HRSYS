@@ -40,10 +40,10 @@ public class Disciplinary extends AuditFields implements Serializable {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id; 
-        @ManyToOne
-        @JoinColumns({
-        @JoinColumn(name="COMPANY", referencedColumnName="COMPANY"),
-        @JoinColumn(name="EMPLOYEE", referencedColumnName="EMPLOYEENUMBER")
+    @ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "COMPANY", referencedColumnName = "COMPANY",nullable = false),
+        @JoinColumn(name = "EMPLOYEE", referencedColumnName = "EMPLOYEENUMBER",nullable = false)
     })
     private Employee employee;
     @Column(name = "OFFENCECODE")

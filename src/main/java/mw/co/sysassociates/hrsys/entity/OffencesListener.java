@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mw.co.sysassociates.hrsys.ejb;
+package mw.co.sysassociates.hrsys.entity;
 
 /**
  *
  * @author Clifton T. Mtengezo
  */
-public class DepartmentService {
+public class OffencesListener {
     
 }

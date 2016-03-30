@@ -22,6 +22,7 @@ import mw.co.sysassociates.hrsys.entity.PrevEmployer;
 @Local
 public interface IEmployee {
     List<Employee> getEmployeeList();
+    Employee findByCompAndEmplono(String company, String employeeNo);
     Employee findByFirstname(String firstname);
     int insertEmployee(String employeeNo, String company, String firstname, String surname, String sex, String title, String division) throws EntityExistsException; 
 //        int insertPrevEmployers(String employeeNo, String company, List<PrevEmployer> prevEmployer) throws EntityExistsException; 

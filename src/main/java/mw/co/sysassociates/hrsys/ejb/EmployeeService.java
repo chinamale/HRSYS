@@ -50,6 +50,15 @@ public class EmployeeService implements IEmployee {
         List<Employee> elementList = em.createNamedQuery("Employee.findByFirstname").setParameter("firstname", firstname).getResultList();
         return elementList.isEmpty() ? null : elementList.get(0);
     }
+    
+    @Override
+    public Employee findByCompAndEmplono(String company, String employeeNo) {
+            EmployeePK emplopk;
+            emplopk = new EmployeePK();
+            emplopk.setCompany(company);
+            emplopk.setEmployeenumber(employeeNo);
+            return em.find(Employee.class, emplopk);
+    }
 
     @Override
     public int insertEmployee(String employeeNo, String company, String firstname, String surname, String sex, String title, String division) throws EntityExistsException {

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import mw.co.sysassociates.hrsys.ejb.IDependant;
 import mw.co.sysassociates.hrsys.ejb.IEmployee;
@@ -20,7 +21,7 @@ import mw.co.sysassociates.hrsys.ejb.IEmployee;
 @Named
 @RequestScoped
 public class NewDependantBean {
-    @EJB
+    @Inject
     IDependant dependantSrv;
     private String employee;
     private String company;
